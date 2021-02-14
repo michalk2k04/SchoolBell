@@ -42,7 +42,7 @@ String processor(const String& var)
   {
     return bellConfig.www_username;
   }
-  
+   
   for (int i = 0; i < 22; i++)
   {
     if (var.equalsIgnoreCase("MonBellSettings_h"+String(i)))
@@ -346,7 +346,7 @@ void handleNotFound(AsyncWebServerRequest *request)
 
 void handleFavicon(AsyncWebServerRequest *request)
 {
-  request->send(LittleFS, "/favicon.ico","image/png");
+  request->send(LittleFS, "/favicon.png","image/png");
 }
 
 
@@ -402,7 +402,7 @@ void handleRestart(AsyncWebServerRequest *request)
 
 void handleLogin(AsyncWebServerRequest *request) 
 {  
-  if (request -> hasArg("username") && request -> hasArg("password")) {
+  if (request -> hasArg("username") && request -> hasArg("password")) { 
     if (request -> arg("username") == bellConfig.www_username &&  request -> arg("password") == bellConfig.www_pass) {
       AsyncWebServerResponse *response = request->beginResponse(LittleFS, "/welcome.html",String() ); 
   
@@ -446,161 +446,383 @@ void handleLogout(AsyncWebServerRequest *request)
   return;
 }
 
+void handleSaveNetworkSettings(AsyncWebServerRequest *request)
+{
+    if (is_authenticated(request))
+  { 
+      
+    String wifi_ssid = request->arg("ssid");
+    String wifi_password = request->arg("password");
+    int httpPort = request->arg("HTTP_port").toInt();
+
+
+    wifi_ssid.toCharArray(bellConfig.wifi_ssid,wifi_ssid.length()+1);
+    wifi_password.toCharArray(bellConfig.wifi_pass, wifi_password.length()+1);
+    
+    bellConfig.httpPort = httpPort;
+
+    bellConfig.save();
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveAccountSettings(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+      
+    String www_username = request->arg("login");
+    String www_pass = request->arg("password");
+
+
+    www_username.toCharArray(bellConfig.www_username,www_username.length()+1);
+    www_pass.toCharArray(bellConfig.www_pass, www_pass.length()+1);
+
+    bellConfig.save();
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveMon(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("MonBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("MonBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellMon[i][0] = a;
+      bellConfig.timeBellMon[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveTue(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("TueBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("TueBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellTue[i][0] = a;
+      bellConfig.timeBellTue[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveWed(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("WedBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("WedBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellWed[i][0] = a;
+      bellConfig.timeBellWed[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveThu(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("ThuBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("ThuBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellThu[i][0] = a;
+      bellConfig.timeBellThu[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveFri(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("FriBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("FriBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellFri[i][0] = a;
+      bellConfig.timeBellFri[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveSat(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("SatBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("SatBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellSat[i][0] = a;
+      bellConfig.timeBellSat[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveSun(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("MonBellSettings_h"+String(i)).toInt();
+      int b = request -> arg("MonBellSettings_m"+String(i)).toInt();
+
+      bellConfig.timeBellSun[i][0] = a;
+      bellConfig.timeBellSun[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Settings.html",String() , false , processor);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
 void setup()
 {
 
   pinMode(D8,OUTPUT); 
 
-    Serial.begin(115200);
+  Serial.begin(115200);
 
-    Serial.println(" ");
-    Serial.println(" ");
-    Serial.println(" ");
-    Serial.println(" ");
-    Serial.println(" ");
- 
-    if(!LittleFS.begin())
-    {
-      Serial.println("An Error has occurred while mounting LittleFS");
-      return;
-    }
+  Serial.println(" ");
+  Serial.println(" ");
+  Serial.println(" ");
+  Serial.println(" ");
+  Serial.println(" ");
 
-    if (!LittleFS.exists("/index.html"))
-    {
-      Serial.println("Waiting for html files !");
+  if(!LittleFS.begin())
+  {
+  Serial.println("An Error has occurred while mounting LittleFS");
+  return;
+  }
 
-      Serial.println("Upload files and restart esp !");
+  if (!LittleFS.exists("/index.html"))
+  {
+  Serial.println("Waiting for html files !");
 
-      while (true)
-      {
-        delay(1000);
-      }
-      
-    }
-    
+  Serial.println("Upload files and restart esp !");
 
-    FSInfo fs_info;
+  while (true)
+  {
+  delay(1000);
+  }
+
+  }
+
+
+  FSInfo fs_info;
   LittleFS.info(fs_info);
 
-    float fileTotalKB = (float)fs_info.totalBytes / 1024.0;
+  float fileTotalKB = (float)fs_info.totalBytes / 1024.0;
   float fileUsedKB = (float)fs_info.usedBytes / 1024.0;
- 
-    Serial.println("===== File system info =====");
- 
-    Serial.print("Total space:      ");
-    Serial.print(fileTotalKB);
-    Serial.println("byte");
- 
-    Serial.print("Total space used: ");
-    Serial.print(fileUsedKB);
-    Serial.println("byte");
- 
-    Serial.println();
 
-    Dir dir = LittleFS.openDir("/");
-    Serial.println("LittleFS directory {/} :");
-    bool filesExist=false;
-    while (dir.next())
-    {
-    filesExist=true;
-    Serial.print("File Name "); Serial.println(dir.fileName());
-    Serial.print("File Length "); Serial.println(dir.fileSize());
-    }
-    if (!filesExist) {
-    Serial.println("No files in LittleFS");
-    }
+  Serial.println("===== File system info =====");
 
-    Serial.println("============================");
+  Serial.print("Total space:      ");
+  Serial.print(fileTotalKB);
+  Serial.println("byte");
 
-    bellConfig.begin();
+  Serial.print("Total space used: ");
+  Serial.print(fileUsedKB);
+  Serial.println("byte");
 
-    Serial.println("===== File system info =====");
+  Serial.println();
 
-    File file2 = LittleFS.open("/Config.json", "r");
- 
-    if (!file2) 
-    {
-      Serial.println("Failed to open file for reading");
-      return;
-    }
-  
-    Serial.println("File Content:");
-  
-    while (file2.available()) {
-  
-      Serial.write(file2.read());
-    }
-    Serial.println(" ");
+  Dir dir = LittleFS.openDir("/");
+  Serial.println("LittleFS directory {/} :");
+  bool filesExist=false;
+  while (dir.next())
+  {
+  filesExist=true;
+  Serial.print("File Name "); Serial.println(dir.fileName());
+  Serial.print("File Length "); Serial.println(dir.fileSize());
+  }
+  if (!filesExist) {
+  Serial.println("No files in LittleFS");
+  }
 
-    Serial.println("===== File system info =====");
+  Serial.println("============================");
+
+  bellConfig.begin();
+
+  Serial.println("===== File system info =====");
+
+  File file2 = LittleFS.open("/Config.json", "r");
+
+  if (!file2) 
+  {
+  Serial.println("Failed to open file for reading");
+  return;
+  }
+
+  Serial.println("File Content:");
+
+  while (file2.available()) {
+
+  Serial.write(file2.read());
+  }
+  Serial.println(" ");
+
+  Serial.println("===== File system info =====");
+
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(bellConfig.wifi_ssid,bellConfig.wifi_pass);
+
+  Serial.println(bellConfig.wifi_ssid);
+  Serial.println(bellConfig.wifi_pass);
+
+  if (WiFi.waitForConnectResult() != WL_CONNECTED) 
+  {
+  Serial.printf("WiFi Failed!\n");
+  return;
+  }
+
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+
+  server.on("/style.css" , HTTP_GET , handleStyleCSS);
+  server.on("/welcome.css" , HTTP_GET , handleWelcomeCSS);
+  server.on("/404.css" , HTTP_GET , handle404CSS);
+
+  server.on("/Settings.js" , HTTP_GET , handleSettingsJS);
+
+  server.on("/" , HTTP_GET , handleIndexHTML);
+  server.on("/index.html" , HTTP_GET , handleIndexHTML);
+  server.on("/Settings.html" , HTTP_GET , handleSettingsHTML);
+  server.on("/welcome.html" , HTTP_GET , handleWelcomeHTML);
+  server.on("/About.html" , HTTP_GET , handleAboutHTML);
+  server.on("/Functions.html" , HTTP_GET , handleFunctionsHTML);
+
+
+  server.on("/login" , HTTP_GET , handleLogin);
+  server.on("/logout" , HTTP_GET , handleLogout);
+  server.on("/bell" , HTTP_GET , handleBell);
+  server.on("/alert" , HTTP_GET , handleAlert);
+  server.on("/saveAccountSettings" , HTTP_GET , handleSaveAccountSettings);
+  server.on("/saveNetworkSettings" , HTTP_GET , handleSaveNetworkSettings);
+
+  server.on("/saveMon" , HTTP_GET , handleSaveMon);
+  server.on("/saveTue" , HTTP_GET , handleSaveTue);
+  server.on("/saveWed" , HTTP_GET , handleSaveWed);
+  server.on("/saveThu" , HTTP_GET , handleSaveThu);
+  server.on("/saveFri" , HTTP_GET , handleSaveFri);
+  server.on("/saveSat" , HTTP_GET , handleSaveSat);
+  server.on("/saveSun" , HTTP_GET , handleSaveSun);
+
+
     
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(bellConfig.wifi_ssid,bellConfig.wifi_pass);
-
-    Serial.println(bellConfig.wifi_ssid);
-    Serial.println(bellConfig.wifi_pass);
-
-    if (WiFi.waitForConnectResult() != WL_CONNECTED) 
-    {
-        Serial.printf("WiFi Failed!\n");
-        return;
-    }
-
-    Serial.print("IP Address: ");
-    Serial.println(WiFi.localIP());
-  
-    server.on("/style.css" , HTTP_GET , handleStyleCSS);
-    server.on("/welcome.css" , HTTP_GET , handleWelcomeCSS);
-    server.on("/404.css" , HTTP_GET , handle404CSS);
-
-    server.on("/Settings.js" , HTTP_GET , handleSettingsJS);
-
-    server.on("/" , HTTP_GET , handleIndexHTML);
-    server.on("/index.html" , HTTP_GET , handleIndexHTML);
-    server.on("/Settings.html" , HTTP_GET , handleSettingsHTML);
-    server.on("/welcome.html" , HTTP_GET , handleWelcomeHTML);
-    server.on("/About.html" , HTTP_GET , handleAboutHTML);
-    server.on("/Functions.html" , HTTP_GET , handleFunctionsHTML);
-
-
-    server.on("/login" , HTTP_GET , handleLogin);
-    server.on("/logout" , HTTP_GET , handleLogout);
-    server.on("/bell" , HTTP_GET , handleBell);
-    server.on("/alert" , HTTP_GET , handleAlert);
     
-    
-    server.on("/favicon.ico" , HTTP_GET , handleFavicon);
 
-    server.onNotFound(handleNotFound);
-  
-    server.begin();
+  server.on("/favicon.ico" , HTTP_GET , handleFavicon );
+  server.on("/favicon.png" , HTTP_GET , handleFavicon );
 
-    if (!MDNS.begin("schoolbell_1")) 
-    {
-      Serial.println("Error setting up MDNS responder!");
-    }
+  server.onNotFound(handleNotFound);
+
+  server.begin();
+
+  if (!MDNS.begin("schoolbell_1")) 
+  {
+  Serial.println("Error setting up MDNS responder!");
+  }
 
 
-    File file3 = LittleFS.open("/Fri.json", "r");
- 
-    if (!file3) 
-    {
-      Serial.println("Failed to open file for reading");
-      return;
-    }
-  
-    Serial.println("File Content:");
-  
-    while (file3.available()) {
-  
-      Serial.write(file3.read());
-    }
+  File file3 = LittleFS.open("/Fri.json", "r");
 
-    file3.close();
-    Serial.println(" ");
+  if (!file3) 
+  {
+  Serial.println("Failed to open file for reading");
+  return;
+  }
 
-    timeClient.begin();
-    timeClient.forceUpdate();
+  Serial.println("File Content:");
+
+  while (file3.available()) {
+
+  Serial.write(file3.read());
+  }
+
+  file3.close();
+  Serial.println(" ");
+
+  timeClient.begin();
+  timeClient.forceUpdate();
 
     
 }

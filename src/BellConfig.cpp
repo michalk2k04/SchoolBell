@@ -20,11 +20,11 @@ BellConfig::BellConfig()
     firstRun = 0;
     httpPort = 80;
 
-    wifi_ssid = "zmienna_1zmienna_1zmienna_1";
-    wifi_pass = "zmienna_2zmienna_2zmienna_2";
+    wifi_ssid = (char *) "zmienna_1zmienna_1zmienna_1";
+    wifi_pass = (char *) "zmienna_2zmienna_2zmienna_2";
 
-    www_username = "zmienna_3zmienna_3zmienna_3";
-    www_pass = "zmienna_4zmienna_4zmienna_4";
+    www_username = (char *) "zmienna_3zmienna_3zmienna_3";
+    www_pass = (char *) "zmienna_4zmienna_4zmienna_4";
 
 
 }
@@ -777,6 +777,9 @@ void BellConfig::saveTue()
 void BellConfig::saveWed()
 {
     StaticJsonDocument<2048> doc; 
+    doc["Bell_1_1"] = timeBellWed[0][0];
+    doc["Bell_1_1"] = timeBellWed[0][1];
+    doc["Bell_1_1"] = timeBellWed[1][0];
     doc["Bell_1_1"] = timeBellWed[1][1];
     doc["Bell_2_0"] = timeBellWed[2][0];
     doc["Bell_2_1"] = timeBellWed[2][1];
