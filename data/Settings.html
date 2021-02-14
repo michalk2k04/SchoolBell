@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+    <head>
+        <link rel='stylesheet' type='text/css' href='./welcome.css' />
+        <link rel="icon" type="image/png" href="./favicon.png"/>
+        <title>School Bell</title>
+    </head>
+
+    <header>
+        <a class="goback" href="welcome.html">Go back</a></li>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="Settings.html">Bell Settings</a></li>
+                <li><a href="Functions.html">Functions</a></li>
+                <li><a href="About.html">About</a></li>
+            </ul>
+        </nav>
+        <div class="dropdown">
+            <span><i class="fas fa-address-card"></i><button class="dropbtn">Account</button></span>
+            <div class="dropdown-content"> 
+                <a href="/logout" class='lout'>Log out</a>
+            </div>
+        </div>
+    </header>
+
+    <body> 
+        <div class="settings">
+            
+            <div class="bellSettings">
+                <section>
+                    <h1>Bell Settings</h1>
+
+                    <details>
+                        <summary> Monday</summary> 
+                        
+                        <form action="GET" action="/saveBellMonday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Monday</th>
+                                    </tr>
+                                </thead>
+
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="MonBellSettings_h0" value="%MonBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m0" value="%MonBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h1" value="%MonBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m1" value="%MonBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="MonBellSettings_h2" value="%MonBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m2" value="%MonBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h3" value="%MonBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m3" value="%MonBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="MonBellSettings_h4" value="%MonBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m4" value="%MonBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h5" value="%MonBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m5" value="%MonBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="MonBellSettings_h6" value="%MonBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m6" value="%MonBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h7" value="%MonBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m7" value="%MonBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="MonBellSettings_h8" value="%MonBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m8" value="%MonBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h9" value="%MonBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m9" value="%MonBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="MonBellSettings_h10" value="%MonBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m10" value="%MonBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h11" value="%MonBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m11" value="%MonBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="MonBellSettings_h12" value="%MonBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m12" value="%MonBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h13" value="%MonBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m13" value="%MonBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="MonBellSettings_h14" value="%MonBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m14" value="%MonBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h15" value="%MonBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m15" value="%MonBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="MonBellSettings_h16" value="%MonBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m16" value="%MonBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h17" value="%MonBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m17" value="%MonBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="MonBellSettings_h18" value="%MonBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m18" value="%MonBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h19" value="%MonBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m19" value="%MonBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="MonBellSettings_h20" value="%MonBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m20" value="%MonBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="MonBellSettings_h21" value="%MonBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="MonBellSettings_m21" value="%MonBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+                        </form>
+                    </details>
+                    <details>
+                        <summary> Tuesday</summary> 
+                        
+                        <form action="GET" action="/saveBellTuesday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Tuesday</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="TueBellSettings_h0" value="%TueBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m0" value="%TueBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h1" value="%TueBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m1" value="%TueBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="TueBellSettings_h2" value="%TueBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m2" value="%TueBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h3" value="%TueBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m3" value="%TueBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="TueBellSettings_h4" value="%TueBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m4" value="%TueBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h5" value="%TueBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m5" value="%TueBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="TueBellSettings_h6" value="%TueBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m6" value="%TueBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h7" value="%TueBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m7" value="%TueBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="TueBellSettings_h8" value="%TueBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m8" value="%TueBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h9" value="%TueBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m9" value="%TueBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="TueBellSettings_h10" value="%TueBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m10" value="%TueBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h11" value="%TueBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m11" value="%TueBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="TueBellSettings_h12" value="%TueBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m12" value="%TueBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h13" value="%TueBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m13" value="%TueBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="TueBellSettings_h14" value="%TueBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m14" value="%TueBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h15" value="%TueBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m15" value="%TueBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="TueBellSettings_h16" value="%TueBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m16" value="%TueBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h17" value="%TueBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m17" value="%TueBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="TueBellSettings_h18" value="%TueBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m18" value="%TueBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h19" value="%TueBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m19" value="%TueBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="TueBellSettings_h20" value="%TueBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m20" value="%TueBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="TueBellSettings_h21" value="%TueBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="TueBellSettings_m21" value="%TueBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+
+                        </form>
+                        
+                    </details>
+                    <details>
+                        <summary> Wednesday</summary> 
+                        
+                        <form action="GET" action="/saveBellWednesday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Wednesday</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="BellSettings_h0" value="%WedBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m0" value="%WedBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h1" value="%WedBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m1" value="%WedBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="WedBellSettings_h2" value="%WedBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m2" value="%WedBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h3" value="%WedBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m3" value="%WedBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="WedBellSettings_h4" value="%WedBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m4" value="%WedBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h5" value="%WedBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m5" value="%WedBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="WedBellSettings_h6" value="%WedBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m6" value="%WedBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h7" value="%WedBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m7" value="%WedBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="WedBellSettings_h8" value="%WedBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m8" value="%WedBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h9" value="%WedBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m9" value="%WedBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="WedBellSettings_h10" value="%WedBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m10" value="%WedBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h11" value="%WedBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m11" value="%WedBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="WedBellSettings_h12" value="%WedBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m12" value="%WedBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h13" value="%WedBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m13" value="%WedBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="WedBellSettings_h14" value="%WedBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m14" value="%WedBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h15" value="%WedBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m15" value="%WedBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="WedBellSettings_h16" value="%WedBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m16" value="%WedBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h17" value="%WedBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m17" value="%WedBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="WedBellSettings_h18" value="%WedBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m18" value="%WedBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h19" value="%WedBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m19" value="%WedBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="WedBellSettings_h20" value="%WedBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m20" value="%WedBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="WedBellSettings_h21" value="%WedBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="WedBellSettings_m21" value="%WedBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+                        </form>
+                    </details>
+                    <details>
+                        <summary> Thursday</summary> 
+                        
+                        <form action="GET" action="/saveBellThursday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Thursday</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="ThuBellSettings_h0" value="%ThuBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m0" value="%ThuBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h1" value="%ThuBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m1" value="%ThuBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="ThuBellSettings_h2" value="%ThuBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m2" value="%ThuBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h3" value="%ThuBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m3" value="%ThuBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="ThuBellSettings_h4" value="%ThuBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m4" value="%ThuBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h5" value="%ThuBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m5" value="%ThuBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="ThuBellSettings_h6" value="%ThuBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m6" value="%ThuBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h7" value="%ThuBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m7" value="%ThuBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="ThuBellSettings_h8" value="%ThuBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m8" value="%ThuBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h9" value="%ThuBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m9" value="%ThuBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="ThuBellSettings_h10" value="%ThuBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m10" value="%ThuBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h11" value="%ThuBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m11" value="%ThuBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="ThuBellSettings_h12" value="%ThuBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m12" value="%ThuBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h13" value="%ThuBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m13" value="%ThuBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="ThuBellSettings_h14" value="%ThuBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m14" value="%ThuBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h15" value="%ThuBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m15" value="%ThuBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="ThuBellSettings_h16" value="%ThuBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m16" value="%ThuBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h17" value="%ThuBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m17" value="%ThuBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="ThuBellSettings_h18" value="%ThuBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m18" value="%ThuBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h19" value="%ThuBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m19" value="%ThuBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="ThuBellSettings_h20" value="%ThuBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m20" value="%ThuBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_h21" value="%ThuBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="ThuBellSettings_m21" value="%ThuBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+                        </form>
+                    </details>
+                    <details>
+                        <summary> Friday</summary> 
+                        
+                        <form action="GET" action="/saveBellFriday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Friday</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="FriBellSettings_h0" value="%FriBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m0" value="%FriBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h1" value="%FriBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m1" value="%FriBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="FriBellSettings_h2" value="%FriBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m2" value="%FriBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h3" value="%FriBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m3" value="%FriBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="FriBellSettings_h4" value="%FriBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m4" value="%FriBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h5" value="%FriBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m5" value="%FriBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="FriBellSettings_h6" value="%FriBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m6" value="%FriBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h7" value="%FriBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m7" value="%FriBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="FriBellSettings_h8" value="%FriBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m8" value="%FriBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h9" value="%FriBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m9" value="%FriBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="FriBellSettings_h10" value="%FriBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m10" value="%FriBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h11" value="%FriBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m11" value="%FriBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="FriBellSettings_h12" value="%FriBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m12" value="%FriBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h13" value="%FriBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m13" value="%FriBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="FriBellSettings_h14" value="%FriBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m14" value="%FriBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h15" value="%FriBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m15" value="%FriBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="FriBellSettings_h16" value="%FriBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m16" value="%FriBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h17" value="%FriBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m17" value="%FriBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="FriBellSettings_h18" value="%FriBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m18" value="%FriBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h19" value="%FriBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m19" value="%FriBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="FriBellSettings_h20" value="%FriBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m20" value="%FriBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="FriBellSettings_h21" value="%FriBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="FriBellSettings_m21" value="%FriBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+                        </form>
+                    </details>
+                    <details>
+                        <summary> Saturday</summary> 
+                        
+                        <form action="GET" action="/saveBellSaturday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Saturday</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+                                
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="SatBellSettings_h0" value="%SatBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m0" value="%SatBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h1" value="%SatBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m1" value="%SatBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="SatBellSettings_h2" value="%SatBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m2" value="%SatBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h3" value="%SatBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m3" value="%SatBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="SatBellSettings_h4" value="%SatBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m4" value="%SatBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h5" value="%SatBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m5" value="%SatBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="SatBellSettings_h6" value="%SatBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m6" value="%SatBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h7" value="%SatBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m7" value="%SatBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="SatBellSettings_h8" value="%SatBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m8" value="%SatBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h9" value="%SatBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m9" value="%SatBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="SatBellSettings_h10" value="%SatBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m10" value="%SatBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h11" value="%SatBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m11" value="%SatBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="SatBellSettings_h12" value="%SatBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m12" value="%SatBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h13" value="%SatBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m13" value="%SatBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="SatBellSettings_h14" value="%SatBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m14" value="%SatBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h15" value="%SatBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><inputMonBellSettings_m type="number" id="SatBellSettings_m15" value="%SatBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="SatBellSettings_h16" value="%SatBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m16" value="%SatBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h17" value="%SatBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m17" value="%SatBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="SatBellSettings_h18" value="%SatBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m18" value="%SatBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h19" value="%SatBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m19" value="%SatBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="SatBellSettings_h20" value="%SatBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m20" value="%SatBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="SatBellSettings_h21" value="%SatBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="SatBellSettings_m21" value="%SatBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+                        </form>
+                    </details>
+                    <details>
+                        <summary> Sunday</summary> 
+                        
+                        <form action="GET" action="/saveBellSunday"></form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th colspan="4">Sunday</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Nr.</td>
+                                        <td>First<br>Bell<br>Hour</td>
+                                        <td>First<br>Bell<br>Minute</td>
+                                        <td>Seocnd<br>Bell<br>Hour</td>
+                                        <td>Second<br>Bell<br>Minute</td>
+                                    </tr>
+                                </tbody>
+
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td><input type="number" id="SunBellSettings_h0" value="%SunBellSettings_h0%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m0" value="%SunBellSettings_m0%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h1" value="%SunBellSettings_h1%" min="-1" max="60" placeholder="7" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m1" value="%SunBellSettings_m1%" min="-1" max="60" placeholder="55" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><input type="number" id="SunBellSettings_h2" value="%SunBellSettings_h2%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m2" value="%SunBellSettings_m2%" min="-1" max="60" placeholder="00" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h3" value="%SunBellSettings_h3%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m3" value="%SunBellSettings_m3%" min="-1" max="60" placeholder="45" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><input type="number" id="SunBellSettings_h4" value="%SunBellSettings_h4%" min="-1" max="60" placeholder="8" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m4" value="%SunBellSettings_m4%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h5" value="%SunBellSettings_h5%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m5" value="%SunBellSettings_m5%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><input type="number" id="SunBellSettings_h6" value="%SunBellSettings_h6%" min="-1" max="60" placeholder="9" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m6" value="%SunBellSettings_m6%" min="-1" max="60" placeholder="50" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h7" value="%SunBellSettings_h7%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m7" value="%SunBellSettings_m7%" min="-1" max="60" placeholder="35" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><input type="number" id="SunBellSettings_h8" value="%SunBellSettings_h8%" min="-1" max="60" placeholder="10" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m8" value="%SunBellSettings_m8%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h9" value="%SunBellSettings_h9%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m9" value="%SunBellSettings_m9%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><input type="number" id="SunBellSettings_h10" value="%SunBellSettings_h10%" min="-1" max="60" placeholder="11" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m10" value="%SunBellSettings_m10%" min="-1" max="60" placeholder="45" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h11" value="%SunBellSettings_h11%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m11" value="%SunBellSettings_m11%" min="-1" max="60" placeholder="30" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><input type="number" id="SunBellSettings_h12" value="%SunBellSettings_h12%" min="-1" max="60" placeholder="12" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m12" value="%SunBellSettings_m12%" min="-1" max="60" placeholder="35" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h13" value="%SunBellSettings_h13%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m13" value="%SunBellSettings_m13%" min="-1" max="60" placeholder="20" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><input type="number" id="SunBellSettings_h14" value="%SunBellSettings_h14%" min="-1" max="60" placeholder="13" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m14" value="%SunBellSettings_m14%" min="-1" max="60" placeholder="25" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h15" value="%SunBellSettings_h15%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m15" value="%SunBellSettings_m15%" min="-1" max="60" placeholder="10" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><input type="number" id="SunBellSettings_h16" value="%SunBellSettings_h16%" min="-1" max="60" placeholder="14" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m16" value="%SunBellSettings_m16%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h17" value="%SunBellSettings_h17%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m17" value="%SunBellSettings_m17%" min="-1" max="60" placeholder="00" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><input type="number" id="SunBellSettings_h18" value="%SunBellSettings_h18%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m18" value="%SunBellSettings_m18%" min="-1" max="60" placeholder="5" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h19" value="%SunBellSettings_h19%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m19" value="%SunBellSettings_m19%" min="-1" max="60" placeholder="50" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><input type="number" id="SunBellSettings_h20" value="%SunBellSettings_h20%" min="-1" max="60" placeholder="15" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m20" value="%SunBellSettings_m20%" min="-1" max="60" placeholder="55" required/></td>
+                                        <td><input type="number" id="SunBellSettings_h21" value="%SunBellSettings_h21%" min="-1" max="60" placeholder="16" required/></td>
+                                        <td><input type="number" id="SunBellSettings_m21" value="%SunBellSettings_m21%" min="-1" max="60" placeholder="40" required/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input id="save" type="submit" value="Save"/>
+
+                        </form>
+                    </details>
+                </section>
+            </div>
+
+            <div class="espSettings">
+                <div class="Account Settings">
+                    <details>
+                        <summary> Account Settings</summary>
+
+                        <form method="GET" action="/saveAccountSettings">
+                            
+                            <input class="inputFields" type="text" id="login" placeholder="Account name" value="%username%" required/>
+                            <input class="inputFields" type="password" id="password" placeholder="Password" oninput="return passwordValidation(this.value)" required/>
+                            <input class="inputFields" type="password" id="confirm_password" placeholder="Passowrd confirm" onclick="return validatePassword()" required/>
+
+                            <input id="save" type="submit" value="Save"/>
+                        </form>
+
+                    </details>
+                </div>
+
+                <div class="networkSettings">
+                    <details>
+                        <summary> Network Settings </summary>
+
+                        <form method="GET" action="/saveNetworkSettings"> 
+
+                            <input class="inputFields" type="text" id="ssid" placeholder="Wifi SSID" value="%ssid%" required/>
+                            <input class="inputFields" type="number" id="HTTP_port" value="%HTTP_port%" min="1" max="1023" placeholder="80" required/>
+                            <input class="inputFields" type="password" id="password" placeholder="Wifi password" oninput="return passwordValidation(this.value)" required/>
+                            <input class="inputFields" type="password" id="confirm_password" placeholder="Wifi confirm password" onclick="return validatePassword()" required/>
+
+                            <input id="save" type="submit" value="Save"/>
+                        </form>
+                        <script src="./Settings.js"></script>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+    <a href="http://michalk2k04.me" target="_blank"><p class="copyright">Created by michalk2k04</p</a>
+    </body>
+</html>
