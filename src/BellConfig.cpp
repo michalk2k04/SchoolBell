@@ -20,6 +20,8 @@ BellConfig::BellConfig()
     firstRun = 0;
     httpPort = 80;
 
+    bell_time = 6;
+
     wifi_ssid = (char *) "zmienna_1zmienna_1zmienna_1";
     wifi_pass = (char *) "zmienna_2zmienna_2zmienna_2";
 
@@ -130,6 +132,7 @@ void BellConfig::load()
     httpPort = EEPROM.read(1);
     loadConfig();
     loadBells();
+    loadTemplates();
     EEPROM.end();
 }
 
@@ -141,7 +144,157 @@ void BellConfig::save()
     EEPROM.write(1,httpPort);
     saveConfig();
     saveBells();
+    saveTemplates();
   EEPROM.end();
+}
+
+
+void BellConfig::saveTemplates()
+{
+    saveTemplate0();
+    saveTemplate1();
+    saveTemplate2();
+}
+
+
+void BellConfig::saveTemplate0()
+{
+    StaticJsonDocument<2048> doc;
+    
+    for (int i = 0; i < 22; i++)
+    {
+        doc["Bell_"+String(i)+"_0"] = template0[i][0];
+        doc["Bell_"+String(i)+"_1"] = template0[i][1];
+    }
+    
+    File configFile = LittleFS.open(fileTemplate0, "w");
+
+    if (!configFile) {
+        Serial.println("Failed to open config file for writing");
+        return;
+    }
+
+    serializeJson(doc, configFile);
+    configFile.close();
+    return;
+}
+
+void BellConfig::saveTemplate1()
+{
+    StaticJsonDocument<2048> doc;
+    
+    for (int i = 0; i < 22; i++)
+    {
+        doc["Bell_"+String(i)+"_0"] = template1[i][0];
+        doc["Bell_"+String(i)+"_1"] = template1[i][1];
+    }
+    
+    File configFile = LittleFS.open(fileTemplate1, "w");
+
+    if (!configFile) {
+        Serial.println("Failed to open config file for writing");
+        return;
+    }
+
+    serializeJson(doc, configFile);
+    configFile.close();
+    return;
+}
+
+void BellConfig::saveTemplate2()
+{
+    StaticJsonDocument<2048> doc;
+    
+    for (int i = 0; i < 22; i++)
+    {
+        doc["Bell_"+String(i)+"_0"] = template2[i][0];
+        doc["Bell_"+String(i)+"_1"] = template2[i][1];
+    }
+    
+    File configFile = LittleFS.open(fileTemplate2, "w");
+
+    if (!configFile) {
+        Serial.println("Failed to open config file for writing");
+        return;
+    }
+
+    serializeJson(doc, configFile);
+    configFile.close();
+    return;
+}
+
+void BellConfig::loadTemplates()
+{
+    loadTemplate0();
+    loadTemplate1();
+    loadTemplate2();
+}
+
+
+void BellConfig::loadTemplate0()
+{
+    File template0File = LittleFS.open(fileTemplate0, "r");
+
+
+    StaticJsonDocument<2048> doc;
+
+    DeserializationError error = deserializeJson(doc, template0File);
+    if (error)
+        Serial.println(F("Failed to read file, using default configuration"));
+
+    for (int i = 0; i < 22; i++)
+    {
+        
+        template0[i][0] = int(doc["Bell_"+String(i)+"_0"]);
+    
+        template0[i][1] = int(doc["Bell_"+String(i)+"_1"]);   
+    }
+
+    template0File.close();
+}
+
+void BellConfig::loadTemplate1()
+{
+        File template1File = LittleFS.open(fileTemplate1, "r");
+
+
+    StaticJsonDocument<2048> doc;
+
+    DeserializationError error = deserializeJson(doc, template1File);
+    if (error)
+        Serial.println(F("Failed to read file, using default configuration"));
+
+    for (int i = 0; i < 22; i++)
+    {
+        
+        template1[i][0] = int(doc["Bell_"+String(i)+"_0"]);
+    
+        template1[i][1] = int(doc["Bell_"+String(i)+"_1"]);   
+    }
+
+    template1File.close();
+}
+
+void BellConfig::loadTemplate2()
+{
+    File template2File = LittleFS.open(fileTemplate2, "r");
+
+
+    StaticJsonDocument<2048> doc;
+
+    DeserializationError error = deserializeJson(doc, template2File);
+    if (error)
+        Serial.println(F("Failed to read file, using default configuration"));
+
+    for (int i = 0; i < 22; i++)
+    {
+        
+        template2[i][0] = int(doc["Bell_"+String(i)+"_0"]);
+    
+        template2[i][1] = int(doc["Bell_"+String(i)+"_1"]);   
+    }
+
+    template2File.close();
 }
 
 void BellConfig::loadConfig()
@@ -167,6 +320,8 @@ void BellConfig::loadConfig()
     strlcpy(www_pass,                 
           doc["www_pass"] | "www_pass",  
           50);
+
+    bell_time = int(doc["bell_time"]);
     
     configFile.close();
 
@@ -179,6 +334,7 @@ void BellConfig::saveConfig()
     doc["wifi_pass"] = wifi_pass;
     doc["www_username"] = www_username;
     doc["www_pass"] = www_pass; 
+    doc["bell_time"] = bell_time; 
 
     File configFile = LittleFS.open(fileConfig, "w");
     if (!configFile) {
@@ -777,9 +933,9 @@ void BellConfig::saveTue()
 void BellConfig::saveWed()
 {
     StaticJsonDocument<2048> doc; 
-    doc["Bell_1_1"] = timeBellWed[0][0];
-    doc["Bell_1_1"] = timeBellWed[0][1];
-    doc["Bell_1_1"] = timeBellWed[1][0];
+    doc["Bell_0_0"] = timeBellWed[0][0];
+    doc["Bell_0_1"] = timeBellWed[0][1];
+    doc["Bell_1_0"] = timeBellWed[1][0];
     doc["Bell_1_1"] = timeBellWed[1][1];
     doc["Bell_2_0"] = timeBellWed[2][0];
     doc["Bell_2_1"] = timeBellWed[2][1];

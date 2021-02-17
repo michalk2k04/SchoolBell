@@ -28,6 +28,44 @@ bool bellAlert = false;
 
 bool bell = false;
 
+String processorTemplates(const String& var)
+{
+  for (int i = 0; i < 22; i++)
+  {
+    if (var.equalsIgnoreCase("Template_0_h"+String(i)))
+    {
+      return String(bellConfig.template0[i][0]);
+    }
+
+    if (var.equalsIgnoreCase("Template_0_m"+String(i)))
+    {
+      return String(bellConfig.template0[i][1]);
+    }
+
+    if (var.equalsIgnoreCase("Template_1_h"+String(i)))
+    {
+      return String(bellConfig.template1[i][0]);
+    }
+
+    if (var.equalsIgnoreCase("Template_1_m"+String(i)))
+    {
+      return String(bellConfig.template1[i][1]);
+    }
+
+    if (var.equalsIgnoreCase("Template_2_h"+String(i)))
+    {
+      return String(bellConfig.template2[i][0]);
+    }
+
+    if (var.equalsIgnoreCase("Template_2_m"+String(i)))
+    {
+      return String(bellConfig.template2[i][1]);
+    }
+  }
+
+  return "";
+}
+
 String processor(const String& var)
 {
   if (var.equalsIgnoreCase("ssid"))
@@ -37,6 +75,10 @@ String processor(const String& var)
   if (var.equalsIgnoreCase("HTTP_port"))
   {
     return String(bellConfig.httpPort);
+  }
+  if (var.equalsIgnoreCase("BELL_TIME"))
+  {
+    return String(bellConfig.bell_time);
   }
   if (var.equalsIgnoreCase("username"))
   {
@@ -122,7 +164,7 @@ void dzwon()
 { 
   digitalWrite(D8,HIGH);
   Serial.println("Dzwonek zaczoł dzwonić");
-  delay(3000);
+  delay(bellConfig.bell_time*1000);
   Serial.println("Dzwonek przestał dzwonić"); 
   digitalWrite(D8,LOW);
 }
@@ -298,6 +340,18 @@ void handleSettingsHTML(AsyncWebServerRequest *request)
   } 
 }
 
+void handleTemplatesHTML(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  { 
+  request->send(LittleFS, "/Templates.html",String() , false , processorTemplates);
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  } 
+}
+
 void handleAboutHTML(AsyncWebServerRequest *request)
 {
   if (is_authenticated(request))
@@ -454,12 +508,15 @@ void handleSaveNetworkSettings(AsyncWebServerRequest *request)
     String wifi_ssid = request->arg("ssid");
     String wifi_password = request->arg("password");
     int httpPort = request->arg("HTTP_port").toInt();
+    int bell_time = request->arg("BELL_TIME").toInt();
 
 
     wifi_ssid.toCharArray(bellConfig.wifi_ssid,wifi_ssid.length()+1);
     wifi_password.toCharArray(bellConfig.wifi_pass, wifi_password.length()+1);
     
     bellConfig.httpPort = httpPort;
+
+    bellConfig.bell_time = bell_time;
 
     bellConfig.save();
 
@@ -654,6 +711,204 @@ void handleSaveSun(AsyncWebServerRequest *request)
   }
 }
 
+void handleSaveTemplate0(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("Template_0_h"+String(i)).toInt();
+      int b = request -> arg("Template_0_m"+String(i)).toInt();
+
+      bellConfig.template0[i][0] = a;
+      bellConfig.template0[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Templates.html",String() , false , processorTemplates);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveTemplate1(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("Template_1_h"+String(i)).toInt();
+      int b = request -> arg("Template_1_m"+String(i)).toInt();
+
+      bellConfig.template1[i][0] = a;
+      bellConfig.template1[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Templates.html",String() , false , processorTemplates);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleSaveTemplate2(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    for (int i = 0; i < 22; i++)
+    {
+      int a = request -> arg("Template_2_h"+String(i)).toInt();
+      int b = request -> arg("Template_2_m"+String(i)).toInt();
+
+      bellConfig.template2[i][0] = a;
+      bellConfig.template2[i][1] = b;
+    }
+
+    request->send(LittleFS, "/Templates.html",String() , false , processorTemplates);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void handleLoadTemplate(AsyncWebServerRequest *request)
+{
+  if (is_authenticated(request))
+  {  
+    
+    String templateID = request -> arg("template");
+    String dayOfWeek = request -> arg("dayOfWeek");
+
+    if(dayOfWeek.equalsIgnoreCase("mon"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellMon,bellConfig.template0,sizeof(bellConfig.timeBellMon));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellMon,bellConfig.template1,sizeof(bellConfig.timeBellMon));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellMon,bellConfig.template2,sizeof(bellConfig.timeBellMon));
+      }
+    }
+    else if (dayOfWeek.equalsIgnoreCase("tue"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellTue,bellConfig.template0,sizeof(bellConfig.timeBellTue));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellTue,bellConfig.template1,sizeof(bellConfig.timeBellTue));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellTue,bellConfig.template2,sizeof(bellConfig.timeBellTue));
+      }
+    }
+    else if (dayOfWeek.equalsIgnoreCase("wed"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellWed,bellConfig.template0,sizeof(bellConfig.timeBellWed));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellWed,bellConfig.template1,sizeof(bellConfig.timeBellWed));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellWed,bellConfig.template2,sizeof(bellConfig.timeBellWed));
+      }
+    }
+    else if (dayOfWeek.equalsIgnoreCase("thu"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellThu,bellConfig.template0,sizeof(bellConfig.timeBellThu));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellThu,bellConfig.template1,sizeof(bellConfig.timeBellThu));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellThu,bellConfig.template2,sizeof(bellConfig.timeBellThu));
+      }
+    }
+    else if (dayOfWeek.equalsIgnoreCase("fri"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellFri,bellConfig.template0,sizeof(bellConfig.timeBellFri));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellFri,bellConfig.template1,sizeof(bellConfig.timeBellFri));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellFri,bellConfig.template2,sizeof(bellConfig.timeBellFri));
+      }
+    }
+    else if (dayOfWeek.equalsIgnoreCase("sat"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellSat,bellConfig.template0,sizeof(bellConfig.timeBellSat));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellSat,bellConfig.template1,sizeof(bellConfig.timeBellSat));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellSat,bellConfig.template2,sizeof(bellConfig.timeBellSat));
+      }
+    }
+    else if (dayOfWeek.equalsIgnoreCase("sun"))
+    {
+      if(templateID.equalsIgnoreCase("template_0"))
+      {
+        memcpy(bellConfig.timeBellSun,bellConfig.template0,sizeof(bellConfig.timeBellSun));
+      }
+      else if(templateID.equalsIgnoreCase("template_1"))
+      {
+        memcpy(bellConfig.timeBellSun,bellConfig.template1,sizeof(bellConfig.timeBellSun));
+      }
+      else if(templateID.equalsIgnoreCase("template_2"))
+      {
+        memcpy(bellConfig.timeBellSun,bellConfig.template2,sizeof(bellConfig.timeBellSun));
+      }
+    }
+    
+    
+    
+    
+    
+
+    request->send(LittleFS, "/Templates.html",String() , false , processorTemplates);
+
+    bellConfig.save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
 void setup()
 {
 
@@ -766,6 +1021,7 @@ void setup()
   server.on("/" , HTTP_GET , handleIndexHTML);
   server.on("/index.html" , HTTP_GET , handleIndexHTML);
   server.on("/Settings.html" , HTTP_GET , handleSettingsHTML);
+  server.on("/Templates.html" , HTTP_GET , handleTemplatesHTML);
   server.on("/welcome.html" , HTTP_GET , handleWelcomeHTML);
   server.on("/About.html" , HTTP_GET , handleAboutHTML);
   server.on("/Functions.html" , HTTP_GET , handleFunctionsHTML);
@@ -785,6 +1041,10 @@ void setup()
   server.on("/saveFri" , HTTP_GET , handleSaveFri);
   server.on("/saveSat" , HTTP_GET , handleSaveSat);
   server.on("/saveSun" , HTTP_GET , handleSaveSun);
+  server.on("/saveTemplate0" , HTTP_GET , handleSaveTemplate0);
+  server.on("/saveTemplate1" , HTTP_GET , handleSaveTemplate1);
+  server.on("/saveTemplate2" , HTTP_GET , handleSaveTemplate2);
+  server.on("/loadTemplate" , HTTP_GET , handleLoadTemplate);
 
 
     
