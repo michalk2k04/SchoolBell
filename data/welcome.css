@@ -510,6 +510,7 @@ select:active {
   text-decoration: none;
   display: block;
   margin: auto;
+  margin-bottom: 50px;
 }
 
 .loadTemp:hover
@@ -625,3 +626,16 @@ select:active {
   background-color: #313131;
   color: #eeeeee;
 }  
+
+.setupTemplates input[type=submit]
+{
+	background: #525252;
+	border: none;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px 26px 10px 26px;
+	border-radius: 6px;
+	color: #A8BACE; 
+  margin-bottom: 35px;
+}
