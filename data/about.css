@@ -1,0 +1,22 @@
+
+.about
+{
+    margin: 3%;
+    color: #eeee;
+    align-content: center;
+    font-size: x-large;
+    font-family: 'Courier New';
+}
+
+.about h5
+{
+    margin: 0px;
+    margin-left: 20px;
+}
+
+.about p
+{
+    margin: 1em;
+    margin-bottom: 0.5em;
+    margin-left: 0px;
+}

@@ -1,21 +1,52 @@
 <!DOCTYPE html>
 <html lang="pl">
-    <head>
-        <link rel="stylesheet" type="text/css" href="./style.css">
-        <meta name="author" content="michalk2k04">
-        <link rel="icon" type="image/png" href="./favicon.png"/>
-        <meta charset="UTF-8">
+  
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="author" content="michalk2k04">
+    
+    <title>School Bell</title>
+    
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./form.css">
+    <link rel="stylesheet" href="./index.css">
 
-        <title>School Bell</title>
-    </head>
-    <body>
-        <form action="/login" method="GET" class="box">
-            <h1>School Bell<br>LOGIN</h1> <br>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-            <input type="submit" value="Log in">
-        </form> 
 
-        <a href="http://michalk2k04.me" target="_blank"><p class="copyright">Created by michalk2k04</p</a>
-    </body>
+    <link rel="shortcut icon" href="./favicon.png" type="image/png">
+
+
+  </head>
+  
+  <body>
+    
+    <div class="box">
+      
+      <p class="login-text">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-lock fa-stack-1x"></i>
+        </span>
+
+        <p id="text-bell">School Bell</p>
+      </p>
+
+      <form action="/login" method="post">
+
+        <input type="text" name="login" placeholder="Login" autofocus>
+
+        <input type="password" name="password" placeholder="Password">
+
+        <input type="submit" value="Log in">
+
+      </form>
+
+    </div>
+
+    <div class="terms">
+      <a href="http://michalk2k04.me">Author michalk2k04</a>
+    </div>
+
+  </body>
+
 </html>

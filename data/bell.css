@@ -1,0 +1,225 @@
+
+.center details[open] summary ~ * 
+{
+  animation: open 0.4s ease-in-out;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.center details summary::-webkit-details-marker {
+  display: none;
+}
+
+.center details summary {
+  width: 100%;
+  padding: 0.5rem 0;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 300;
+  list-style: none;
+}
+
+.center details summary:after {
+  content: "+";
+  color: #e7e6e1;
+  position: absolute;
+  font-size: 1.75rem;
+  line-height: 0;
+  margin-top: 0.75rem;
+  right: 0;
+  font-weight: 200;
+  transform-origin: center;
+  transition: 200ms linear;
+}
+
+
+.center details
+{
+  border-bottom: 1px solid #525252; 
+  margin-top: 1em;
+  padding: 1.15em;
+}
+
+.center details[open] summary:after {
+  transform: rotate(45deg);
+  font-size: 2rem;
+}
+.center details summary {
+  outline: 0;
+  color: #9ea1a3;
+}
+
+.center input[type=submit]
+{
+	background: #86C232;
+	border: none;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px 26px 10px 26px;
+	border-radius: 6px;
+	color: #eeeeee; 
+  margin-bottom: 35px;
+} 
+
+.center input[type=submit]:hover
+{
+  background: #61892F;
+} 
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.center td>input
+{
+  width: 40px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  text-align: center;
+  background-color: #222629; 
+  color: #9ea1a3;
+  outline:none;
+} 
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #6B6E70;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #6B6E70;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #6B6E70;
+} 
+table , th , td , tr
+{
+	border: 1em;
+	border: 1px solid #434a52;
+	border-collapse: collapse;
+	margin: auto;
+	padding: 2px; 
+}
+
+td , th
+{
+  color: #9ea1a3;
+}
+
+th
+{
+	padding: 7px;
+	font-size: 1.6em;
+} 
+
+
+.selctors
+{
+  display: flex;
+  margin: auto;
+}
+
+.selctors>h2
+{
+  margin-top: 2.7em;
+  font-size: 1.7em;
+}
+
+.theme-construction 
+{
+  --radius: 5px;
+  --baseFg: #eeeeee;
+  --baseBg: #61892F;
+  --accentFg: #61892F;
+  --accentBg: orange;
+}
+
+select 
+{
+  font: 400 12px/1.3 sans-serif;
+  -webkit-appearance: none;
+  appearance: none;
+  color: var(--baseFg);
+  border: 1px solid var(--baseFg);
+  line-height: 1;
+  outline: 0;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  font-size: medium;
+  margin: 2em;
+  margin-top: 4.5em;
+  border-radius: var(--radius);
+  background-color: var(--baseBg);
+  background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
+  background-position: right 20px center, right bottom, right bottom, right bottom;   
+}
+
+select:hover 
+{
+  background-image: linear-gradient(var(--accentFg), var(--accentFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+}
+
+select:active 
+{
+  background-image: linear-gradient(var(--accentFg), var(--accentFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+  color: var(--accentBg);
+  border-color: var(--accentFg);
+  background-color: var(--accentFg);
+}
+
+.loadTemp
+{
+  
+  margin: 1em;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 15px 20px;
+  width: 100px;
+  outline: none;
+  color: white;
+  border-radius: 20px; 
+  cursor: pointer;
+  background: none;
+  text-decoration: none;
+  display: block;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.loadTemp:hover
+{
+  
+  background-color: #2ecc71;
+}
+ 
+.loadTemplates
+{
+  width: max-content;
+  margin: auto;
+	text-align: center;
+	padding: 2em;
+  display: flex;
+}

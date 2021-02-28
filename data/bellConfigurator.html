@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="michalk2k04">
+        
+        <title>School Bell</title>
+
+        <link rel="stylesheet" href="./main.css">
+        <link rel="stylesheet" href="./navbar.css">
+        <link rel="stylesheet" href="./bell.css">
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+        <link rel="shortcut icon" href="favicon.png" type="image/png">
+    </head>
+
+    <body>
+
+      <div class="nav">
+      
+        <a href="/welcome.html">Home</a>
+        <a href="/bellTemplates.html">Bell Templates</a>
+        <a href="/bellConfigurator.html" class="active">Bell Configurator</a>
+        <a href="/functions.html">Functions</a>
+        <a href="/settings.html">Settings</a>
+        <a href="/about.html">About</a>
+        
+        <a href="/logout" class="logout">Log out</a>
+
+      </div>
+      <div class="center">
+        <form action="/saveMonday" method="post">
+          <details>
+
+            <summary>Monday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Monday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="mon_h0" value="%mon_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="mon_m0" value="%mon_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="mon_h1" value="%mon_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="mon_m1" value="%mon_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="mon_h2" value="%mon_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="mon_m2" value="%mon_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="mon_h3" value="%mon_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="mon_m3" value="%mon_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="mon_h4" value="%mon_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="mon_m4" value="%mon_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="mon_h5" value="%mon_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="mon_m5" value="%mon_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="mon_h6" value="%mon_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="mon_m6" value="%mon_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="mon_h7" value="%mon_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="mon_m7" value="%mon_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="mon_h8" value="%mon_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="mon_m8" value="%mon_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="mon_h9" value="%mon_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="mon_m9" value="%mon_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="mon_h10" value="%mon_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="mon_m10" value="%mon_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="mon_h11" value="%mon_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="mon_m11" value="%mon_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="mon_h12" value="%mon_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="mon_m12" value="%mon_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="mon_h13" value="%mon_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="mon_m13" value="%mon_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="mon_h14" value="%mon_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="mon_m14" value="%mon_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="mon_h15" value="%mon_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="mon_m15" value="%mon_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="mon_h16" value="%mon_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="mon_m16" value="%mon_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="mon_h17" value="%mon_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="mon_m17" value="%mon_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="mon_h18" value="%mon_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="mon_m18" value="%mon_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="mon_h19" value="%mon_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="mon_m19" value="%mon_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="mon_h20" value="%mon_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="mon_m20" value="%mon_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="mon_h21" value="%mon_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="mon_m21" value="%mon_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="mon_h22" value="%mon_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="mon_m22" value="%mon_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="mon_h23" value="%mon_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="mon_m23" value="%mon_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+        <form action="/saveTuesday" method="post">
+          <details>
+
+            <summary>Tuesday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Tuesday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="tue_h0" value="%tue_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="tue_m0" value="%tue_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="tue_h1" value="%tue_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="tue_m1" value="%tue_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="tue_h2" value="%tue_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="tue_m2" value="%tue_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="tue_h3" value="%tue_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="tue_m3" value="%tue_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="tue_h4" value="%tue_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="tue_m4" value="%tue_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="tue_h5" value="%tue_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="tue_m5" value="%tue_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="tue_h6" value="%tue_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="tue_m6" value="%tue_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="tue_h7" value="%tue_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="tue_m7" value="%tue_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="tue_h8" value="%tue_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="tue_m8" value="%tue_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="tue_h9" value="%tue_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="tue_m9" value="%tue_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="tue_h10" value="%tue_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="tue_m10" value="%tue_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="tue_h11" value="%tue_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="tue_m11" value="%tue_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="tue_h12" value="%tue_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="tue_m12" value="%tue_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="tue_h13" value="%tue_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="tue_m13" value="%tue_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="tue_h14" value="%tue_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="tue_m14" value="%tue_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="tue_h15" value="%tue_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="tue_m15" value="%tue_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="tue_h16" value="%tue_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="tue_m16" value="%tue_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="tue_h17" value="%tue_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="tue_m17" value="%tue_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="tue_h18" value="%tue_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="tue_m18" value="%tue_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="tue_h19" value="%tue_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="tue_m19" value="%tue_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="tue_h20" value="%tue_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="tue_m20" value="%tue_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="tue_h21" value="%tue_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="tue_m21" value="%tue_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="tue_h22" value="%tue_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="tue_m22" value="%tue_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="tue_h23" value="%tue_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="tue_m23" value="%tue_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+
+        <form action="/saveWednesday" method="post">
+          <details>
+
+            <summary>Wednesday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Wednesday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="wed_h0" value="%wed_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="wed_m0" value="%wed_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="wed_h1" value="%wed_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="wed_m1" value="%wed_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="wed_h2" value="%wed_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="wed_m2" value="%wed_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="wed_h3" value="%wed_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="wed_m3" value="%wed_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="wed_h4" value="%wed_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="wed_m4" value="%wed_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="wed_h5" value="%wed_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="wed_m5" value="%wed_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="wed_h6" value="%wed_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="wed_m6" value="%wed_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="wed_h7" value="%wed_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="wed_m7" value="%wed_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="wed_h8" value="%wed_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="wed_m8" value="%wed_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="wed_h9" value="%wed_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="wed_m9" value="%wed_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="wed_h10" value="%wed_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="wed_m10" value="%wed_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="wed_h11" value="%wed_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="wed_m11" value="%wed_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="wed_h12" value="%wed_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="wed_m12" value="%wed_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="wed_h13" value="%wed_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="wed_m13" value="%wed_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="wed_h14" value="%wed_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="wed_m14" value="%wed_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="wed_h15" value="%wed_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="wed_m15" value="%wed_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="wed_h16" value="%wed_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="wed_m16" value="%wed_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="wed_h17" value="%wed_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="wed_m17" value="%wed_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="wed_h18" value="%wed_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="wed_m18" value="%wed_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="wed_h19" value="%wed_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="wed_m19" value="%wed_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="wed_h20" value="%wed_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="wed_m20" value="%wed_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="wed_h21" value="%wed_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="wed_m21" value="%wed_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="wed_h22" value="%wed_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="wed_m22" value="%wed_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="wed_h23" value="%wed_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="wed_m23" value="%wed_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+
+        <form action="/saveThursday" method="post">
+          <details>
+
+            <summary>Thursday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Thursday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="thu_h0" value="%thu_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="thu_m0" value="%thu_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="thu_h1" value="%thu_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="thu_m1" value="%thu_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="thu_h2" value="%thu_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="thu_m2" value="%thu_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="thu_h3" value="%thu_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="thu_m3" value="%thu_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="thu_h4" value="%thu_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="thu_m4" value="%thu_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="thu_h5" value="%thu_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="thu_m5" value="%thu_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="thu_h6" value="%thu_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="thu_m6" value="%thu_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="thu_h7" value="%thu_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="thu_m7" value="%thu_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="thu_h8" value="%thu_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="thu_m8" value="%thu_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="thu_h9" value="%thu_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="thu_m9" value="%thu_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="thu_h10" value="%thu_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="thu_m10" value="%thu_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="thu_h11" value="%thu_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="thu_m11" value="%thu_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="thu_h12" value="%thu_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="thu_m12" value="%thu_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="thu_h13" value="%thu_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="thu_m13" value="%thu_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="thu_h14" value="%thu_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="thu_m14" value="%thu_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="thu_h15" value="%thu_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="thu_m15" value="%thu_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="thu_h16" value="%thu_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="thu_m16" value="%thu_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="thu_h17" value="%thu_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="thu_m17" value="%thu_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="thu_h18" value="%thu_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="thu_m18" value="%thu_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="thu_h19" value="%thu_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="thu_m19" value="%thu_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="thu_h20" value="%thu_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="thu_m20" value="%thu_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="thu_h21" value="%thu_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="thu_m21" value="%thu_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="thu_h22" value="%thu_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="thu_m22" value="%thu_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="thu_h23" value="%thu_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="thu_m23" value="%thu_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+
+        <form action="/saveFriday" method="post">
+          <details>
+
+            <summary>Friday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Friday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="fri_h0" value="%fri_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="fri_m0" value="%fri_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="fri_h1" value="%fri_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="fri_m1" value="%fri_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="fri_h2" value="%fri_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="fri_m2" value="%fri_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="fri_h3" value="%fri_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="fri_m3" value="%fri_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="fri_h4" value="%fri_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="fri_m4" value="%fri_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="fri_h5" value="%fri_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="fri_m5" value="%fri_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="fri_h6" value="%fri_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="fri_m6" value="%fri_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="fri_h7" value="%fri_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="fri_m7" value="%fri_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="fri_h8" value="%fri_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="fri_m8" value="%fri_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="fri_h9" value="%fri_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="fri_m9" value="%fri_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="fri_h10" value="%fri_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="fri_m10" value="%fri_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="fri_h11" value="%fri_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="fri_m11" value="%fri_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="fri_h12" value="%fri_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="fri_m12" value="%fri_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="fri_h13" value="%fri_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="fri_m13" value="%fri_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="fri_h14" value="%fri_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="fri_m14" value="%fri_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="fri_h15" value="%fri_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="fri_m15" value="%fri_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="fri_h16" value="%fri_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="fri_m16" value="%fri_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="fri_h17" value="%fri_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="fri_m17" value="%fri_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="fri_h18" value="%fri_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="fri_m18" value="%fri_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="fri_h19" value="%fri_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="fri_m19" value="%fri_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="fri_h20" value="%fri_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="fri_m20" value="%fri_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="fri_h21" value="%fri_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="fri_m21" value="%fri_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="fri_h22" value="%fri_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="fri_m22" value="%fri_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="fri_h23" value="%fri_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="fri_m23" value="%fri_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+
+        <form action="/saveSaturday" method="post">
+          <details>
+
+            <summary>Saturday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Saturday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="sat_h0" value="%sat_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="sat_m0" value="%sat_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="sat_h1" value="%sat_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="sat_m1" value="%sat_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="sat_h2" value="%sat_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="sat_m2" value="%sat_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="sat_h3" value="%sat_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="sat_m3" value="%sat_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="sat_h4" value="%sat_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="sat_m4" value="%sat_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="sat_h5" value="%sat_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="sat_m5" value="%sat_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="sat_h6" value="%sat_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="sat_m6" value="%sat_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="sat_h7" value="%sat_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="sat_m7" value="%sat_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="sat_h8" value="%sat_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="sat_m8" value="%sat_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="sat_h9" value="%sat_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="sat_m9" value="%sat_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="sat_h10" value="%sat_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="sat_m10" value="%sat_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="sat_h11" value="%sat_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="sat_m11" value="%sat_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="sat_h12" value="%sat_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="sat_m12" value="%sat_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="sat_h13" value="%sat_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="sat_m13" value="%sat_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="sat_h14" value="%sat_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="sat_m14" value="%sat_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="sat_h15" value="%sat_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="sat_m15" value="%sat_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="sat_h16" value="%sat_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="sat_m16" value="%sat_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="sat_h17" value="%sat_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="sat_m17" value="%sat_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="sat_h18" value="%sat_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="sat_m18" value="%sat_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="sat_h19" value="%sat_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sat_m19" value="%sat_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="sat_h20" value="%sat_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sat_m20" value="%sat_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="sat_h21" value="%sat_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sat_m21" value="%sat_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="sat_h22" value="%sat_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sat_m22" value="%sat_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="sat_h23" value="%sat_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="sat_m23" value="%sat_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+
+        <form action="/saveSunday" method="post">
+          <details>
+
+            <summary>Sunday</summary>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nr.</th>
+                  <th colspan="4">Sunday</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0</td>
+                  <td><input type="number" name="sun_h0" value="%sun_h0%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="sun_m0" value="%sun_m0%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="sun_h1" value="%sun_h1%" min="-1" max="60" placeholder="7" required/></td>
+                  <td><input type="number" name="sun_m1" value="%sun_m1%" min="-1" max="60" placeholder="55" required/></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="number" name="sun_h2" value="%sun_h2%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="sun_m2" value="%sun_m2%" min="-1" max="60" placeholder="00" required/></td>
+                  <td><input type="number" name="sun_h3" value="%sun_h3%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="sun_m3" value="%sun_m3%" min="-1" max="60" placeholder="45" required/></td>
+              </tr>
+              <tr>
+                  <td>2</td>
+                  <td><input type="number" name="sun_h4" value="%sun_h4%" min="-1" max="60" placeholder="8" required/></td>
+                  <td><input type="number" name="sun_m4" value="%sun_m4%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="sun_h5" value="%sun_h5%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="sun_m5" value="%sun_m5%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="number" name="sun_h6" value="%sun_h6%" min="-1" max="60" placeholder="9" required/></td>
+                  <td><input type="number" name="sun_m6" value="%sun_m6%" min="-1" max="60" placeholder="50" required/></td>
+                  <td><input type="number" name="sun_h7" value="%sun_h7%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="sun_m7" value="%sun_m7%" min="-1" max="60" placeholder="35" required/></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="number" name="sun_h8" value="%sun_h8%" min="-1" max="60" placeholder="10" required/></td>
+                  <td><input type="number" name="sun_m8" value="%sun_m8%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="sun_h9" value="%sun_h9%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="sun_m9" value="%sun_m9%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="number" name="sun_h10" value="%sun_h10%" min="-1" max="60" placeholder="11" required/></td>
+                  <td><input type="number" name="sun_m10" value="%sun_m10%" min="-1" max="60" placeholder="45" required/></td>
+                  <td><input type="number" name="sun_h11" value="%sun_h11%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="sun_m11" value="%sun_m11%" min="-1" max="60" placeholder="30" required/></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="number" name="sun_h12" value="%sun_h12%" min="-1" max="60" placeholder="12" required/></td>
+                  <td><input type="number" name="sun_m12" value="%sun_m12%" min="-1" max="60" placeholder="40" required/></td>
+                  <td><input type="number" name="sun_h13" value="%sun_h13%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="sun_m13" value="%sun_m13%" min="-1" max="60" placeholder="25" required/></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="number" name="sun_h14" value="%sun_h14%" min="-1" max="60" placeholder="13" required/></td>
+                  <td><input type="number" name="sun_m14" value="%sun_m14%" min="-1" max="60" placeholder="35" required/></td>
+                  <td><input type="number" name="sun_h15" value="%sun_h15%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="sun_m15" value="%sun_m15%" min="-1" max="60" placeholder="20" required/></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="number" name="sun_h16" value="%sun_h16%" min="-1" max="60" placeholder="14" required/></td>
+                  <td><input type="number" name="sun_m16" value="%sun_m16%" min="-1" max="60" placeholder="25" required/></td>
+                  <td><input type="number" name="sun_h17" value="%sun_h17%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="sun_m17" value="%sun_m17%" min="-1" max="60" placeholder="10" required/></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><input type="number" name="sun_h18" value="%sun_h18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="sun_m18" value="%sun_m18%" min="-1" max="60" placeholder="15" required/></td>
+                  <td><input type="number" name="sun_h19" value="%sun_h19%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sun_m19" value="%sun_m19%" min="-1" max="60" placeholder="00" required/></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><input type="number" name="sun_h20" value="%sun_h20%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sun_m20" value="%sun_m20%" min="-1" max="60" placeholder="05" required/></td>
+                  <td><input type="number" name="sun_h21" value="%sun_h21%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sun_m21" value="%sun_m21%" min="-1" max="60" placeholder="50" required/></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td><input type="number" name="sun_h22" value="%sun_h22%" min="-1" max="60" placeholder="16" required/></td>
+                  <td><input type="number" name="sun_m22" value="%sun_m22%" min="-1" max="60" placeholder="55" required/></td>
+                  <td><input type="number" name="sun_h23" value="%sun_h23%" min="-1" max="60" placeholder="17" required/></td>
+                  <td><input type="number" name="sun_m23" value="%sun_m23%" min="-1" max="60" placeholder="40" required/></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="Save">
+
+          </details>
+        </form>
+
+ 
+
+
+      </div>
+
+      
+
+    <script id="render-js" src="./bell.js"></script>
+    <div class="terms">
+      <a href="http://michalk2k04.me">Author michalk2k04</a>
+    </div>
+    
+    </body>
+
+</html>

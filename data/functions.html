@@ -8,7 +8,7 @@
 
         <link rel="stylesheet" href="./main.css">
         <link rel="stylesheet" href="./navbar.css">
-        <link rel="stylesheet" href="./welcome.css">
+        <link rel="stylesheet" href="./functions.css">
 
         <link rel="shortcut icon" href="favicon.png" type="image/png">
     </head>
@@ -17,27 +17,23 @@
 
       <div class="nav">
       
-        <a href="/welcome.html" class="active">Home</a>
+        <a href="/welcome.html">Home</a>
         <a href="/bellTemplates.html">Bell Templates</a>
         <a href="/bellConfigurator.html">Bell Configurator</a>
-        <a href="/functions.html">Functions</a>
+        <a href="/functions.html" class="active">Functions</a>
         <a href="/settings.html">Settings</a>
         <a href="/about.html">About</a>
         
         <a href="/logout" class="logout">Log out</a>
 
       </div>
-
-      <div class="welcome">
-        <h3>
-          School Bell <br> <br>
-        </h3>
-
-        <h4>Next bell :</h2>
-        <p>%nextBell%</p>
+ 
+      <div class="center">
+        <form action="/callBell" method="post"><input type="button" value="Call Bell"></form>
+        <form action="/callAlert" method="post"><input type="button" value="Call Alert"></form>
+        <form action="/rebootESP" method="post"><input type="button" value="Reboot ESP"></form>
       </div>
-  
-    <script src="./welcome.js"></script>
+
 
     <div class="terms">
       <a href="http://michalk2k04.me">Author michalk2k04</a>
