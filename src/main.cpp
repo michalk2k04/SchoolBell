@@ -5,11 +5,14 @@
 #include <LittleFS.h>
 #include <FS.h>
 #include <Config.h>
-#include <SoftwareSerial.h>
+#include "SoftwareSerial.h"
+#include <SerialConfigurator.h>
 
 Config config = Config();
 
 SoftwareSerial mySerial(D4,D5);
+
+SerialConfigurator serialConfigurator = SerialConfigurator(mySerial,config);
 
 void listFiles()
 {
@@ -31,6 +34,8 @@ void listFiles()
   }
   mySerial.println("==============================================");
   mySerial.println(" ");
+
+ 
 }
 
 void begin()
@@ -52,6 +57,7 @@ void setup()
 {
   Serial.begin(115200);
   mySerial.begin(9600);
+  //mySerial.begin(9600,SWSERIAL_8N1,D4,D5, false, 64);  
 
   mySerial.println(" ");
   mySerial.println("==============================================");
@@ -75,13 +81,17 @@ void setup()
 
   config.begin();
  
+  serialConfigurator.begin();
 }
 
 void loop()
-{
-  if (mySerial.available())
+{ 
+
+  if (Serial.available())
   {
-    Serial.write(mySerial.readString().c_str());
+    mySerial.write(Serial.readString().c_str());
   }  
+
+  serialConfigurator.handleMenu();
   delay(10);
 }

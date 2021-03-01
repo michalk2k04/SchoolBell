@@ -17,43 +17,28 @@ Config::Config()
 
 void Config::begin()
 { 
-  load();
+  load(); 
 }
 
 void Config::save()
-{
-  EEPROM.begin(512);
-
-  EEPROM.write(0,firstRun);
+{ 
   
   saveConfig();
 
   saveTemplates();
 
-  saveBells();
+  saveBells(); 
 
-  EEPROM.commit();
-  EEPROM.end();
-
-  Serial.println("Config saved ! -"+firstRun); 
+  Serial.println("Config saved ! -"+String(firstRun)); 
 }
 
 void Config::load()
 {
   if (!LittleFS.exists(fileConfig))
   {
-    save();
-
-    EEPROM.begin(512);
-    EEPROM.write(0,0);
-    EEPROM.end();  
+    save(); 
   }
-  
-
-  EEPROM.begin(512); 
-  firstRun = int(EEPROM.read(0)); 
-  EEPROM.end(); 
-  
+   
   loadConfig(); 
   loadTemplates(); 
   loadBells();   
@@ -92,6 +77,7 @@ void Config::loadConfig()
 
 bellDuration = int(doc["bellDuration"]);
 port = int(doc["port"]);
+firstRun = int(doc["firstRun"]);
   
   configFile.close();
 
@@ -106,7 +92,8 @@ void Config::saveConfig()
   doc["www_user"] = www_user;
   doc["www_pass"] = www_pass; 
   doc["bellDuration"] = bellDuration; 
-  doc["port"] = port; 
+  doc["port"] = port;  
+  doc["firstRun"] = firstRun; 
 
   File configFile = LittleFS.open(fileConfig, "w");
   if (!configFile) {
@@ -219,12 +206,12 @@ void Config::saveTemplates()
 }
 void Config::saveTemplate0()
 {
-  StaticJsonDocument<4096> doc;
+  StaticJsonDocument<2048> doc;
 
   for (int i = 0; i < 24; i++)
   {
-    doc["temp0_"+String(i)+"_0"] = template0[i][0];
-    doc["temp0_"+String(i)+"_1"] = template0[i][1];
+    doc["temp_"+String(i)+"_0"] = template0[i][0];
+    doc["temp_"+String(i)+"_1"] = template0[i][1];
   }
     
 
@@ -240,12 +227,12 @@ void Config::saveTemplate0()
 
 void Config::saveTemplate1()
 {
-  StaticJsonDocument<4096> doc;
+  StaticJsonDocument<2048> doc;
 
   for (int i = 0; i < 24; i++)
   {
-    doc["temp1_"+String(i)+"_0"] = template1[i][0];
-    doc["temp1_"+String(i)+"_1"] = template1[i][1];
+    doc["temp_"+String(i)+"_0"] = template1[i][0];
+    doc["temp_"+String(i)+"_1"] = template1[i][1];
   }
     
 
@@ -261,12 +248,12 @@ void Config::saveTemplate1()
 
 void Config::saveTemplate2()
 {
-  StaticJsonDocument<4096> doc;
+   StaticJsonDocument<2048> doc;
 
   for (int i = 0; i < 24; i++)
   {
-    doc["temp2_"+String(i)+"_0"] = template2[i][0];
-    doc["temp2_"+String(i)+"_1"] = template2[i][1];
+    doc["temp_"+String(i)+"_0"] = template2[i][0];
+    doc["temp_"+String(i)+"_1"] = template2[i][1];
   }
     
 
@@ -282,12 +269,12 @@ void Config::saveTemplate2()
 
 void Config::saveTemplate3()
 {
-  StaticJsonDocument<4096> doc;
+  StaticJsonDocument<2048> doc;
 
   for (int i = 0; i < 24; i++)
   {
-    doc["temp3_"+String(i)+"_0"] = template3[i][0];
-    doc["temp3_"+String(i)+"_1"] = template3[i][1];
+    doc["temp_"+String(i)+"_0"] = template3[i][0];
+    doc["temp_"+String(i)+"_1"] = template3[i][1];
   }
     
 

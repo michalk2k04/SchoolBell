@@ -2,8 +2,7 @@
 #define CONFIG_H
 
 #include <Arduino.h>
-#include <ArduinoJson.h>
-#include <EEPROM.h>
+#include <ArduinoJson.h> 
 #include <LittleFS.h>
 
 class Config
