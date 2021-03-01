@@ -3,6 +3,10 @@
 
 Config::Config()
 {
+  firstRun = 0;
+  port = 80;
+
+  bellDuration = 6;
 
   wifi_ssid = (char *) "aaaaaaaaaaaaaaaaaaaaaaaaaaa1";
   wifi_pass = (char *) "aaaaaaaaaaaaaaaaaaaaaaaaaaa2";
@@ -13,19 +17,7 @@ Config::Config()
 
 void Config::begin()
 { 
-
-  EEPROM.begin(512);
-
-  int i = EEPROM.read(0);
-  EEPROM.end();
-  if (i != 1)
-  {
-    save();
-  }
-  else
-  {
-    load();
-  } 
+  load();
 }
 
 void Config::save()
@@ -33,33 +25,38 @@ void Config::save()
   EEPROM.begin(512);
 
   EEPROM.write(0,firstRun);
-
+  
   saveConfig();
 
   saveTemplates();
 
   saveBells();
 
+  EEPROM.commit();
   EEPROM.end();
 
-  Serial.println("Config saved !"+firstRun);
-  
-  load();
+  Serial.println("Config saved ! -"+firstRun); 
 }
 
 void Config::load()
 {
-  EEPROM.begin(512);
+  if (!LittleFS.exists(fileConfig))
+  {
+    save();
 
-  firstRun = int(EEPROM.read(0));
+    EEPROM.begin(512);
+    EEPROM.write(0,0);
+    EEPROM.end();  
+  }
+  
 
-  loadConfig();
-
-  loadTemplates();
-
-  loadBells(); 
-
-  EEPROM.end();
+  EEPROM.begin(512); 
+  firstRun = int(EEPROM.read(0)); 
+  EEPROM.end(); 
+  
+  loadConfig(); 
+  loadTemplates(); 
+  loadBells();   
 }
 
 /**
@@ -140,7 +137,7 @@ void Config::loadTemplates()
 void Config::loadTemplate0()
 {
   File configFile = LittleFS.open(fileTemplate0, "r");
-  StaticJsonDocument<4096> doc;
+  StaticJsonDocument<2048> doc;
 
   DeserializationError error = deserializeJson(doc, configFile);
   
@@ -149,8 +146,8 @@ void Config::loadTemplate0()
 
   for (int i = 0; i < 24; i++)
   {
-      template0[i][0] = doc["temp0_"+String(i)+"_0"];
-      template0[i][1] = doc["temp0_"+String(i)+"_1"];
+      template0[i][0] = doc["temp_"+String(i)+"_0"];
+      template0[i][1] = doc["temp_"+String(i)+"_1"];
   }
     
   configFile.close();
@@ -159,7 +156,7 @@ void Config::loadTemplate0()
 void Config::loadTemplate1()
 {
   File configFile = LittleFS.open(fileTemplate1, "r");
-  StaticJsonDocument<4096> doc;
+  StaticJsonDocument<2048> doc;
 
   DeserializationError error = deserializeJson(doc, configFile);
   
@@ -168,8 +165,8 @@ void Config::loadTemplate1()
 
   for (int i = 0; i < 24; i++)
   {
-      template1[i][0] = doc["temp1_"+String(i)+"_0"];
-      template1[i][1] = doc["temp1_"+String(i)+"_1"];
+      template1[i][0] = doc["temp_"+String(i)+"_0"];
+      template1[i][1] = doc["temp_"+String(i)+"_1"];
   }
     
   configFile.close();
@@ -178,7 +175,7 @@ void Config::loadTemplate1()
 void Config::loadTemplate2()
 {
   File configFile = LittleFS.open(fileTemplate2, "r");
-  StaticJsonDocument<4096> doc;
+  StaticJsonDocument<2048> doc;
 
   DeserializationError error = deserializeJson(doc, configFile);
   
@@ -187,8 +184,8 @@ void Config::loadTemplate2()
 
   for (int i = 0; i < 24; i++)
   {
-      template2[i][0] = doc["temp2_"+String(i)+"_0"];
-      template2[i][1] = doc["temp2_"+String(i)+"_1"];
+      template2[i][0] = doc["temp_"+String(i)+"_0"];
+      template2[i][1] = doc["temp_"+String(i)+"_1"];
   }
     
   configFile.close();
@@ -196,8 +193,8 @@ void Config::loadTemplate2()
 
 void Config::loadTemplate3()
 {
-  File configFile = LittleFS.open(fileTemplate3, "r");
-  StaticJsonDocument<4096> doc;
+   File configFile = LittleFS.open(fileTemplate3, "r");
+  StaticJsonDocument<2048> doc;
 
   DeserializationError error = deserializeJson(doc, configFile);
   
@@ -206,8 +203,8 @@ void Config::loadTemplate3()
 
   for (int i = 0; i < 24; i++)
   {
-      template3[i][0] = doc["temp3_"+String(i)+"_0"];
-      template3[i][1] = doc["temp3_"+String(i)+"_1"];
+      template3[i][0] = doc["temp_"+String(i)+"_0"];
+      template3[i][1] = doc["temp_"+String(i)+"_1"];
   }
     
   configFile.close();

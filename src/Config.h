@@ -17,11 +17,11 @@ class Config
 
     void save(); 
 
-    int firstRun;
+    int firstRun = 0;
 
-    int port;
+    int port = 80;
 
-    int bellDuration;
+    int bellDuration = 6;
    
     char* wifi_ssid;
     char* wifi_pass;
