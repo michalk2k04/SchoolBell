@@ -18,14 +18,12 @@ void SerialConfigurator::begin()
   
 }
 
-void SerialConfigurator::handleMenu()
+void SerialConfigurator::handleMenu(BellTimer& timer)
 {
   long currentMillis = millis();
 
-  if(currentMillis - timerMills > 20000)
-  {
-    config->save();
-
+  if(currentMillis - timerMills > 100000)
+  { 
     mySerial->println(" ");
     mySerial->println(" Menu :");
     mySerial->println("   ");
@@ -37,7 +35,12 @@ void SerialConfigurator::handleMenu()
     mySerial->println("   6 - Print list of files");
     mySerial->println("   7 - Print all templates");
     mySerial->println("   8 - Print all bells"); 
+    mySerial->println("   9 - Save and relstart ESP");
     mySerial->println("   ");
+    config->save();
+    mySerial->println("   Memory: " + String(ESP.getFreeHeap()));
+    mySerial->println("   ");
+    mySerial->println("   Time: " + timer.getTime());
     mySerial->println("   ");
 
     timerMills = millis();
@@ -88,6 +91,9 @@ void SerialConfigurator::run()
     case 8:
       menu8();
       break;
+    case 9:
+      menu9();
+      break;
     
     default:
       break;
@@ -104,10 +110,12 @@ void SerialConfigurator::firstRun()
   menu3();
 
   config->firstRun = 1;
+  config->save();
 }
 
 String SerialConfigurator::waitForInput(String inputName)
 {
+  yield();
   mySerial->println(" ");
   mySerial->print(" " + inputName + " >");
   
@@ -115,18 +123,11 @@ String SerialConfigurator::waitForInput(String inputName)
 
   while (!mySerial->available())
   {
-    delay(10);
+    yield();
   }
 
-  while (mySerial->available()) 
-  {
-    delay(10); 
-    if (mySerial->available() > 0) 
-    {
-      char c = mySerial->read();
-      readStr += c;
-    }
-  }
+  readStr = mySerial->readString();
+  yield();
 
   mySerial->println(readStr);
 
@@ -135,33 +136,50 @@ String SerialConfigurator::waitForInput(String inputName)
 
 void SerialConfigurator::menu1()
 {
+  yield();
   String wifi_ssid = waitForInput("Input WiFi ssid (name) ");
-  int wifi_ssid_size = sizeof(wifi_ssid); 
+  int wifi_ssid_size = wifi_ssid.length(); 
   wifi_ssid.toCharArray(config->wifi_ssid,wifi_ssid_size); 
+  yield();
+  
   String wifi_pass = waitForInput("Input WiFi password ");
-  int wifi_pass_size = sizeof(wifi_pass);
+  int wifi_pass_size = wifi_pass.length();
   wifi_pass.toCharArray(config->wifi_pass,wifi_pass_size);
+  yield();
   menu = 0;
+  config->save();
+  yield();
 }
 
 void SerialConfigurator::menu2()
 {
+  yield();
   String www_user = waitForInput("Input new username ");
-  int www_user_size = sizeof(www_user); 
+  int www_user_size = www_user.length(); 
   www_user.toCharArray(config->www_user,www_user_size); 
+  yield();
+
   String www_pass = waitForInput("Input new user password ");
-  int www_pass_size = sizeof(www_pass);
-  www_pass.toCharArray(config->wifi_pass,www_pass_size);
+  int www_pass_size = www_pass.length();
+  www_pass.toCharArray(config->www_pass,www_pass_size);
+  yield();
+  
   menu = 0;
+  config->save();
+  yield();
 }
 
 void SerialConfigurator::menu3()
 {
   String port = waitForInput("Input web (www) port ");
   config->port = port.toInt();
+  yield();
   String bell = waitForInput("Input bell duration (seconds) ");
   config->bellDuration = bell.toInt();
+  yield();
   menu = 0;
+  config->save();
+  yield();
 }
 
 void SerialConfigurator::menu4()
@@ -365,4 +383,16 @@ void SerialConfigurator::menu8()
   mySerial->println("==============================================");
 
   menu = 0;
+}
+
+
+void SerialConfigurator::menu9()
+{
+  config->save();
+  mySerial->println("=====================================");
+  mySerial->println(" ");
+  mySerial->println(" ESP reload !");
+  mySerial->println(" ");
+  mySerial->println("=====================================");
+  ESP.restart(); 
 }

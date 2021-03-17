@@ -7,12 +7,18 @@
 #include <Config.h>
 #include "SoftwareSerial.h"
 #include <SerialConfigurator.h>
+#include <HTTPServer.h>
+#include <BellTimer.h>
 
 Config config = Config();
 
 SoftwareSerial mySerial(D4,D5);
 
 SerialConfigurator serialConfigurator = SerialConfigurator(mySerial,config);
+
+BellTimer timer = BellTimer(mySerial,config);
+
+HTTPServer server = HTTPServer(mySerial,config,timer);
 
 void listFiles()
 {
@@ -82,16 +88,41 @@ void setup()
   config.begin();
  
   serialConfigurator.begin();
+
+  server.begin();
+
+  timer.begin();
 }
 
 void loop()
 { 
+
+  if(config.mainSave())
+  {
+    Serial.println("Config saved !");
+  }
+  
+  if (timer.bellAlert)
+  {
+    timer.alert();
+    timer.bellAlert = false;
+    delay(3000);
+  }
+
+  if (timer.bell)
+  {
+    timer.dzwon();
+    timer.bell = false;
+    delay(3000);
+  }
+  
+  delay(1000);
 
   if (Serial.available())
   {
     mySerial.write(Serial.readString().c_str());
   }  
 
-  serialConfigurator.handleMenu();
-  delay(10);
+  timer.handleBell();
+  serialConfigurator.handleMenu(timer);
 }

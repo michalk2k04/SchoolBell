@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 #include <Config.h>
+#include <BellTimer.h>
 
 class SerialConfigurator
 {
@@ -13,7 +14,7 @@ class SerialConfigurator
 
     void begin();
 
-    void handleMenu(); 
+    void handleMenu(BellTimer& timer); 
 
   private:
 
@@ -35,6 +36,7 @@ class SerialConfigurator
     void menu6();
     void menu7();
     void menu8();
+    void menu9();
 
     Config *config;
     SoftwareSerial *mySerial;

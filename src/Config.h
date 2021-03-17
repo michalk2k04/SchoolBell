@@ -28,7 +28,7 @@ class Config
     char* www_user;
     char* www_pass;
 
-
+    bool mainSave();
 
     int monBell[24][2] = 
     {
