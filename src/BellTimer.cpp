@@ -10,17 +10,17 @@ BellTimer::BellTimer(SoftwareSerial& mySerial,Config& config)
 void BellTimer::begin()
 {
   ntpUDP = new WiFiUDP();
-  timeClient = new NTPClient( *this->ntpUDP, "pool.ntp.org", utcOffsetInSeconds,updateInMs);
-
+  timeClient = new NTPClient( *this->ntpUDP, "ntp.itl.waw.pl", utcOffsetInSeconds,updateInMs);
+  
   timeClient->begin();
   timeClient->forceUpdate();
 }
 
 void BellTimer::handleBell()
 {
-  if(lastUpdate != timeClient->getHours())
-  {
-    lastUpdate = timeClient->getHours();
+  if(lastUpdate != timeClient->getHours()+config->przestawienieCzasu)
+  {  
+    lastUpdate = timeClient->getHours()+config->przestawienieCzasu;
     timeClient->forceUpdate(); 
   }
 
@@ -70,7 +70,7 @@ bool BellTimer::isTime(int day,int hour,int minute)
     return false;
   }
   
-   if(timeClient->getHours() != hour)
+   if(timeClient->getHours()+config->przestawienieCzasu != hour)
    {
     return false;
    }
@@ -91,10 +91,12 @@ bool BellTimer::isTime(int day,int hour,int minute)
 void BellTimer::dzwon()
 { 
   digitalWrite(D0,HIGH);
+  digitalWrite(D1,HIGH);
   Serial.println("Dzwonek zaczoł dzwonić");
   delay(config->bellDuration*1000);
   Serial.println("Dzwonek przestał dzwonić"); 
   digitalWrite(D0,LOW);
+  digitalWrite(D1,LOW);
 }
 
 void BellTimer::alert()
@@ -120,10 +122,22 @@ void BellTimer::alert()
 String BellTimer::getTime()
 {
   String str = "";
-  str += timeClient->getHours();
+  if(timeClient->getHours()+config->przestawienieCzasu<10)
+  {
+    str += ("0");
+  }
+  str += timeClient->getHours()+config->przestawienieCzasu;
   str += ":";
+  if(timeClient->getMinutes()<10)
+  {
+    str += ("0");
+  }
   str += timeClient->getMinutes();
   str += ":";
+  if(timeClient->getSeconds()<10)
+  {
+    str += ("0");
+  }
   str += timeClient->getSeconds();
   return str;
 }
@@ -132,6 +146,7 @@ String BellTimer::toNextBell()
 { 
   int bellNumber = -1;
   String str = "";
+ 
 
   switch (timeClient->getDay())
   {
@@ -139,26 +154,44 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->sunBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->sunBell[i][0])
         {
           if (timeClient->getMinutes() < config->sunBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->sunBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->sunBell[i][0]);
             str += ":";
+            if(config->sunBell[i][1]<10)
+            {
+              str += ("0");
+            }
             str += String(config->sunBell[i][1]);
             return str;
           }
         }
 
-        if ((timeClient->getHours()+1) == config->sunBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->sunBell[i][0] && i != 23)
         {
 
-          bellNumber = i;
-          str += String(config->sunBell[i][0]);
-          str += ":";
-          str += String(config->sunBell[i][1]);
-          return str;
+            bellNumber = i;
+            
+            if(config->sunBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->sunBell[i][0]);
+            str += ":";
+            if(config->sunBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->sunBell[i][1]);
+            return str;
 
         }
         
@@ -169,26 +202,43 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->monBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->monBell[i][0])
         {
           if (timeClient->getMinutes() < config->monBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->monBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->monBell[i][0]);
             str += ":";
+            if(config->monBell[i][1]<10)
+            {
+              str += ("0");
+            }
             str += String(config->monBell[i][1]);
             return str;
           }
         }
 
-        if ((timeClient->getHours()+1) == config->monBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->monBell[i][0] && i != 23)
         {
-
-          bellNumber = i;
-          str += String(config->monBell[i][0]);
-          str += ":";
-          str += String(config->monBell[i][1]);
-          return str;
+            bellNumber = i;
+            
+            if(config->monBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->monBell[i][0]);
+            str += ":";
+            if(config->monBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->monBell[i][1]);
+            return str;
 
         }
         
@@ -199,27 +249,43 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->tueBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->tueBell[i][0])
         {
           if (timeClient->getMinutes() < config->tueBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->tueBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->tueBell[i][0]);
             str += ":";
+            if(config->tueBell[i][1]<10)
+            {
+              str += ("0");
+            }
             str += String(config->tueBell[i][1]);
             return str;
           }
         }
 
-        if ((timeClient->getHours()+1) == config->tueBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->tueBell[i][0] && i != 23)
         {
-
-          bellNumber = i;
-          str += String(config->tueBell[i][0]);
-          str += ":";
-          str += String(config->tueBell[i][1]);
-          return str;
-
+            bellNumber = i;
+            
+            if(config->tueBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->tueBell[i][0]);
+            str += ":";
+            if(config->tueBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->tueBell[i][1]);
+            return str;
         }
         
       }
@@ -229,26 +295,43 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->wedBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->wedBell[i][0])
         {
           if (timeClient->getMinutes() < config->wedBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->wedBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->wedBell[i][0]);
             str += ":";
+            if(config->wedBell[i][1]<10)
+            {
+              str += ("0");
+            }
             str += String(config->wedBell[i][1]);
             return str;
           }
         }
 
-        if ((timeClient->getHours()+1) == config->wedBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->wedBell[i][0] && i != 23)
         {
-
-          bellNumber = i;
-          str += String(config->wedBell[i][0]);
-          str += ":";
-          str += String(config->wedBell[i][1]);
-          return str;
+            bellNumber = i;
+            
+            if(config->wedBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->wedBell[i][0]);
+            str += ":";
+            if(config->wedBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->wedBell[i][1]);
+            return str;
 
         }
         
@@ -259,26 +342,44 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->thuBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->thuBell[i][0])
         {
           if (timeClient->getMinutes() < config->thuBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->thuBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->thuBell[i][0]);
             str += ":";
+            if(config->thuBell[i][1]<10)
+            {
+              str += ("0");
+            }
             str += String(config->thuBell[i][1]);
             return str;
+
           }
         }
 
-        if ((timeClient->getHours()+1) == config->thuBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->thuBell[i][0] && i != 23)
         {
-
-          bellNumber = i;
-          str += String(config->thuBell[i][0]);
-          str += ":";
-          str += String(config->thuBell[i][1]);
-          return str;
+            bellNumber = i;
+            
+            if(config->thuBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->thuBell[i][0]);
+            str += ":";
+            if(config->thuBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->thuBell[i][1]);
+            return str;
 
         }
         
@@ -289,26 +390,43 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->friBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->friBell[i][0])
         {
           if (timeClient->getMinutes() < config->friBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->friBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->friBell[i][0]);
             str += ":";
+            if(config->friBell[i][1]<10)
+            {
+              str += ("0");
+            }
             str += String(config->friBell[i][1]);
             return str;
           }
         }
 
-        if ((timeClient->getHours()+1) == config->friBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->friBell[i][0] && i != 23)
         {
-
-          bellNumber = i;
-          str += String(config->friBell[i][0]);
-          str += ":";
-          str += String(config->friBell[i][1]);
-          return str;
+            bellNumber = i;
+            
+            if(config->friBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->friBell[i][0]);
+            str += ":";
+            if(config->friBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->friBell[i][1]);
+            return str;
 
         }
         
@@ -319,26 +437,43 @@ String BellTimer::toNextBell()
 
       for (int i = 0; i < 24; i++)
       {
-        if (timeClient->getHours() == config->satBell[i][0])
+        if (timeClient->getHours()+config->przestawienieCzasu == config->satBell[i][0])
         {
           if (timeClient->getMinutes() < config->satBell[i][1])
           {
             bellNumber = i;
+            
+            if(config->satBell[i][0]<10)
+            {
+              str += ("0");
+            }
             str += String(config->satBell[i][0]);
             str += ":";
-            str += String(config->wedBell[i][1]);
+            if(config->satBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->satBell[i][1]);
             return str;
           }
         }
 
-        if ((timeClient->getHours()+1) == config->satBell[i][0] && i != 23)
+        if ((timeClient->getHours()+config->przestawienieCzasu+1) == config->satBell[i][0] && i != 23)
         {
-
-          bellNumber = i;
-          str += String(config->satBell[i][0]);
-          str += ":";
-          str += String(config->satBell[i][1]);
-          return str;
+            bellNumber = i;
+            
+            if(config->satBell[i][0]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->satBell[i][0]);
+            str += ":";
+            if(config->satBell[i][1]<10)
+            {
+              str += ("0");
+            }
+            str += String(config->satBell[i][1]);
+            return str;
 
         }
         
@@ -352,7 +487,7 @@ String BellTimer::toNextBell()
 
   if (bellNumber == -1)
   {
-    return "Tomorrow !";
+    return "Not today !";
   }
  
   return str; 

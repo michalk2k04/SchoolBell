@@ -91,6 +91,7 @@ void Config::loadConfig()
           50);
 
     bellDuration = int(doc["duration"]);
+    przestawienieCzasu = int(doc["przestawienie"]);
     port = int(doc["port"]);
     firstRun = int(doc["run"]);
     
@@ -108,6 +109,7 @@ void Config::saveConfig()
     doc["port"] = port;
     doc["duration"] = bellDuration; 
     doc["run"] = firstRun; 
+    doc["przestawienie"] = przestawienieCzasu;
 
     File configFile = LittleFS.open(fileConfig, "w");
     if (!configFile) {
@@ -129,7 +131,7 @@ void Config::saveConfig()
  * 
  */
 void Config::loadTemplates()
-{ 
+{
   loadTemplate0();
   loadTemplate1();
   loadTemplate2();
@@ -137,196 +139,243 @@ void Config::loadTemplates()
 }
 
 void Config::loadTemplate0()
-{
-    File template0File = LittleFS.open(fileTemplate0, "r");
+{ 
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileTemplate0, "r");
 
-    StaticJsonDocument<2048> doc;
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
 
-    DeserializationError error = deserializeJson(doc, template0File);
-    if (error)
-        Serial.println(F("Failed to read file, using default configuration"));
+  DeserializationError error = deserializeJson(doc, file);
 
-    for (int i = 0; i < 22; i++)
-    {
-        
-        template0[i][0] = int(doc["Bell_"+String(i)+"_0"]);
-    
-        template0[i][1] = int(doc["Bell_"+String(i)+"_1"]);   
-    }
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
 
-    template0File.close();
+  for (int i = 0; i < 24; i++)
+  {
+    template0[i][0] = doc["bell"+String(i)+"h"] | -2;
+    template0[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadTemplate1()
 {
-  File configFile = LittleFS.open(fileTemplate1, "r");
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
 
-  DeserializationError error = deserializeJson(doc, configFile);
+  File file = LittleFS.open(fileTemplate1, "r");
 
-  if (error)
-      Serial.println(F("Failed to read file, using default configuration"));
-  
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    template1[i][0] = doc[("h_"+String(i))];
-    template1[i][1] = doc[("m_"+String(i))];
-  }
-  
-  
-  configFile.flush();
-  configFile.close();
+    template1[i][0] = doc["bell"+String(i)+"h"] | -2;
+    template1[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
 
+  file.close();
 }
 
 void Config::loadTemplate2()
 {
-  File configFile = LittleFS.open(fileTemplate2, "r");
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
 
-  DeserializationError error = deserializeJson(doc, configFile);
+  File file = LittleFS.open(fileTemplate2, "r");
 
-  if (error)
-      Serial.println(F("Failed to read file, using default configuration"));
-  
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    template2[i][0] = doc[("h_"+String(i))];
-    template2[i][1] = doc[("m_"+String(i))];
-  }
-  
-  
-  configFile.flush();
-  configFile.close();
+    template2[i][0] = doc["bell"+String(i)+"h"] | -2;
+    template2[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
 
+  file.close();
 }
 
 void Config::loadTemplate3()
 {
-  File configFile = LittleFS.open(fileTemplate3, "r");
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
 
-  DeserializationError error = deserializeJson(doc, configFile);
+  File file = LittleFS.open(fileTemplate3, "r");
 
-  if (error)
-      Serial.println(F("Failed to read file, using default configuration"));
-  
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    template3[i][0] = doc[("h_"+String(i))];
-    template3[i][1] = doc[("m_"+String(i))];
-  }
-  
-  
-  configFile.flush();
-  configFile.close();
+    template3[i][0] = doc["bell"+String(i)+"h"] | -2;
+    template3[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
 
+  file.close();
 }
 
 void Config::saveTemplates()
 {
-  yield();
   saveTemplate0();
-  yield();
   saveTemplate1();
-  yield();
   saveTemplate2();
-  yield();
   saveTemplate3();
-  yield();
 }
 
 void Config::saveTemplate0()
 {
-    StaticJsonDocument<2048> doc;
-    
-    for (int i = 0; i < 22; i++)
-    {
-        doc["Bell_"+String(i)+"_0"] = template0[i][0];
-        doc["Bell_"+String(i)+"_1"] = template0[i][1];
-    }
-    
-    File configFile = LittleFS.open(fileTemplate0, "w");
+  DynamicJsonDocument doc(1536);
+  
+  LittleFS.remove(fileTemplate0);
 
-    if (!configFile) {
-        Serial.println("Failed to open config file for writing");
-        return;
-    }
+  File file = LittleFS.open(fileTemplate0, "w");
 
-    serializeJson(doc, configFile);
-    configFile.close();
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
     return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    doc["bell"+String(i)+"h"] = template0[i][0];
+    doc["bell"+String(i)+"m"] = template0[i][1];
+  } 
+
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
+  }
+
+  file.close();
 }
 
 void Config::saveTemplate1()
 {
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileTemplate1);
+
+  File file = LittleFS.open(fileTemplate1, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = template1[i][0];
-    doc[("m_"+String(i))] = template1[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileTemplate1, "w");
+    doc["bell"+String(i)+"h"] = template1[i][0];
+    doc["bell"+String(i)+"m"] = template1[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return; 
+  file.close();
 }
 
 void Config::saveTemplate2()
 {
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileTemplate2);
+
+  File file = LittleFS.open(fileTemplate2, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = template2[i][0];
-    doc[("m_"+String(i))] = template2[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileTemplate2, "w");
+    doc["bell"+String(i)+"h"] = template2[i][0];
+    doc["bell"+String(i)+"m"] = template2[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
+  file.close();
 }
 
 void Config::saveTemplate3()
 {
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileTemplate3);
+
+  File file = LittleFS.open(fileTemplate3, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = template3[i][0];
-    doc[("m_"+String(i))] = template3[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileTemplate3, "w");
+    doc["bell"+String(i)+"h"] = template3[i][0];
+    doc["bell"+String(i)+"m"] = template3[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
-
+  file.close();
 }
 
 /**
@@ -339,227 +388,430 @@ void Config::saveTemplate3()
 
 void Config::loadBells()
 {
-
+  loadMon();
+  loadTue();
+  loadWed();
+  loadThu();
+  loadFri();
+  loadSat();
+  loadSun();
 }
 
 void Config::loadMon()
 {
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileMon, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    monBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    monBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadTue()
 {
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileTue, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    tueBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    tueBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadWed()
 {
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileWed, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    wedBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    wedBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadThu()
 {
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileThu, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    thuBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    thuBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadFri()
 {
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileFri, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    friBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    friBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadSat()
 {
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileSat, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    satBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    satBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 void Config::loadSun()
-{ 
+{
+  DynamicJsonDocument doc(1536);
 
+  File file = LittleFS.open(fileSun, "r");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
+  DeserializationError error = deserializeJson(doc, file);
+
+  if (error) 
+  {
+    Serial.print(F("deserializeJson() failed: "));
+    Serial.println(error.f_str());
+    return;
+  }
+
+  for (int i = 0; i < 24; i++)
+  {
+    sunBell[i][0] = doc["bell"+String(i)+"h"] | -2;
+    sunBell[i][1] = doc["bell"+String(i)+"m"] | -2;
+  } 
+
+  file.close();
 }
 
 
 void Config::saveBells()
 {
-  yield();
   saveMon();
-  yield();
   saveTue();
-  yield();
   saveWed();
-  yield();
   saveThu();
-  yield();
   saveFri();
-  yield();
   saveSat();
-  yield();
   saveSun();
-  yield();
 }
 
 void Config::saveMon()
-{ 
-  StaticJsonDocument<2048> doc;
+{
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileMon);
+
+  File file = LittleFS.open(fileMon, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = monBell[i][0];
-    doc[("m_"+String(i))] = monBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileMon, "w");
+    doc["bell"+String(i)+"h"] = monBell[i][0];
+    doc["bell"+String(i)+"m"] = monBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
-
+  file.close();
 }
 
 void Config::saveTue()
-{ 
-  StaticJsonDocument<2048> doc;
+{
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileTue);
+
+  File file = LittleFS.open(fileTue, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = tueBell[i][0];
-    doc[("m_"+String(i))] = tueBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileTue, "w");
+    doc["bell"+String(i)+"h"] = tueBell[i][0];
+    doc["bell"+String(i)+"m"] = tueBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
-
+  file.close();
 }
 
 void Config::saveWed()
 {
-  StaticJsonDocument<2048> doc;
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileWed);
+
+  File file = LittleFS.open(fileWed, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = wedBell[i][0];
-    doc[("m_"+String(i))] = wedBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileWed, "w");
+    doc["bell"+String(i)+"h"] = wedBell[i][0];
+    doc["bell"+String(i)+"m"] = wedBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
- 
+  file.close();
 }
 
 void Config::saveThu()
-{ 
-  StaticJsonDocument<2048> doc;
+{
+
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileThu);
+
+  File file = LittleFS.open(fileThu, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = thuBell[i][0];
-    doc[("m_"+String(i))] = thuBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileThu, "w");
+    doc["bell"+String(i)+"h"] = thuBell[i][0];
+    doc["bell"+String(i)+"m"] = thuBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
-
+  file.close();
 }
 
 void Config::saveFri()
-{ 
-  StaticJsonDocument<2048> doc;
+{
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileFri);
+
+  File file = LittleFS.open(fileFri, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = friBell[i][0];
-    doc[("m_"+String(i))] = friBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileFri, "w");
+    doc["bell"+String(i)+"h"] = friBell[i][0];
+    doc["bell"+String(i)+"m"] = friBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
-
+  file.close();
 }
 
 void Config::saveSat()
-{ 
-  StaticJsonDocument<2048> doc;
+{
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileSat);
+
+  File file = LittleFS.open(fileSat, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = satBell[i][0];
-    doc[("m_"+String(i))] = satBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileSat, "w");
+    doc["bell"+String(i)+"h"] = satBell[i][0];
+    doc["bell"+String(i)+"m"] = satBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
-
+  file.close();
 }
 
 void Config::saveSun()
-{ 
-  StaticJsonDocument<2048> doc;
+{
+  DynamicJsonDocument doc(1536);
   
+  LittleFS.remove(fileSun);
+
+  File file = LittleFS.open(fileSun, "w");
+
+  if (!file) 
+  {
+    Serial.println(F("Failed to create file"));
+    return;
+  }
+
   for (int i = 0; i < 24; i++)
   {
-    doc[("h_"+String(i))] = sunBell[i][0];
-    doc[("m_"+String(i))] = sunBell[i][1];
-  }
-  
-  File configFile = LittleFS.open(fileSun, "w");
+    doc["bell"+String(i)+"h"] = sunBell[i][0];
+    doc["bell"+String(i)+"m"] = sunBell[i][1];
+  } 
 
-  if (!configFile) {
-      Serial.println("Failed to open config file for writing");
-      return;
+  if (serializeJson(doc, file) == 0) 
+  {
+    Serial.println(F("Failed to write to file"));
   }
 
-  serializeJson(doc, configFile);
-  configFile.flush();
-  configFile.close();
-  return;
+  file.close();
 }

@@ -21,6 +21,8 @@ class Config
     int port = 80;
 
     int bellDuration = 6;
+
+    int przestawienieCzasu = 0;
    
     char* wifi_ssid;
     char* wifi_pass;

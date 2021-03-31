@@ -1,4 +1,4 @@
-.center input[type=button]
+.center input[type=submit]
 {
   background: none;
   margin: 10px;
@@ -10,7 +10,7 @@
   color: #eeee;
 }
 
-.center input[type=button]:hover
+.center input[type=submit]:hover
 {
   background-color: #86C232;
 }

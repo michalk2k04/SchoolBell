@@ -133,9 +133,9 @@ void HTTPServer::handleFunctions()
   server->on("/logout", HTTP_GET, [this](AsyncWebServerRequest *request){ HTTPServer::handleLogout(request); });
   server->on("/nextBell", HTTP_GET, [this](AsyncWebServerRequest *request){ HTTPServer::nextBell(request); });
   server->on("/getTime", HTTP_GET, [this](AsyncWebServerRequest *request){ HTTPServer::getTime(request); });
-  server->on("/callBell", HTTP_GET, [this](AsyncWebServerRequest *request){ HTTPServer::handleCallBell(request); });
-  server->on("/callAlert", HTTP_GET, [this](AsyncWebServerRequest *request){ HTTPServer::handleCallAlert(request); });
-  server->on("/rebootESP", HTTP_GET, [this](AsyncWebServerRequest *request){ HTTPServer::nextBell(request); });
+  server->on("/callBell", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleCallBell(request); });
+  server->on("/callAlert", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleCallAlert(request); });
+  server->on("/rebootESP", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleReboot(request); });
 
   server->on("/saveTemplate0", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleSaveTemplate0(request); });
   server->on("/saveTemplate1", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleSaveTemplate1(request); });
@@ -159,6 +159,7 @@ void HTTPServer::handleFunctions()
   server->on("/updateBellDuration", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleUpdateBellDuration(request); });
   server->on("/updateWifi", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleUpdateWifi(request); });
   server->on("/updatePort", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::handleUpdatePort(request); });
+  server->on("/updateUTC", HTTP_POST, [this](AsyncWebServerRequest *request){ HTTPServer::updateUTC(request); });
 }
 
 /**
@@ -604,6 +605,12 @@ String HTTPServer::processorSettings(const String& str)
     return String(config->bellDuration);
   }
 
+  if (str.startsWith("utc"))
+  {
+    return String(config->przestawienieCzasu);
+  }
+  
+
   return String("");
 }
 
@@ -992,6 +999,25 @@ void HTTPServer::handleUpdatePort(AsyncWebServerRequest *request)
     String port = request->arg("port"); 
 
     config->port = port.toInt();
+    
+    request->send(LittleFS , "/settings.html" , String() , false,[this](const String &var) -> String { return this->processorSettings(var); }); 
+
+    config->save();
+  }
+  else
+  {
+    request->send(LittleFS, "/index.html",String() , false);
+  }
+}
+
+void HTTPServer::updateUTC(AsyncWebServerRequest *request)
+{
+    if (is_authenticated(request))
+  { 
+
+    String utc = request->arg("utc"); 
+
+    config->przestawienieCzasu = utc.toInt();
     
     request->send(LittleFS , "/settings.html" , String() , false,[this](const String &var) -> String { return this->processorSettings(var); }); 
 

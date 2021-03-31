@@ -60,7 +60,9 @@ void begin()
 }
 
 void setup()
-{
+{ 
+pinMode(D0, OUTPUT);
+pinMode(D1, OUTPUT);
   Serial.begin(115200);
   mySerial.begin(9600);
   //mySerial.begin(9600,SWSERIAL_8N1,D4,D5, false, 64);  
@@ -99,7 +101,7 @@ void loop()
 
   if(config.mainSave())
   {
-    Serial.println("Config saved !");
+    mySerial.println("Config saved !");
   }
   
   if (timer.bellAlert)

@@ -56,6 +56,7 @@ class HTTPServer
     void handleUpdateBellDuration(AsyncWebServerRequest *request);
     void handleUpdateWifi(AsyncWebServerRequest *request);
     void handleUpdatePort(AsyncWebServerRequest *request);
+    void updateUTC(AsyncWebServerRequest *request);
 
     void setupServer();
     

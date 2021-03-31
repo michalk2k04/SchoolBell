@@ -34,7 +34,7 @@ class BellTimer
 
       int lastUpdate = 0;
 
-      bool isTime(int day,int hour,int minute);
+      bool isTime(int day,int hour,int minute); 
 
       Config *config;
       WiFiUDP *ntpUDP;
